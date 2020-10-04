@@ -100,9 +100,12 @@ module.exports = getIncompleteCounter = () => async (req, res) => {
         return res.status(400).end()
         }
 
-        newDocs=[];
+        let newDocs=[];
+
+        console.log("DOCSY")
+        console.log(docs)
         docs.forEach(doc => {
-            if(doc.pacjent.dataOrzeczeniaUpdated || doc.pacjent.decyzjaUpdated ) {
+            if(!doc.pacjent.dataOrzeczeniaUpdated || !doc.pacjent.decyzjaUpdated ) {
                 newDocs.push(doc)
             }
         })
