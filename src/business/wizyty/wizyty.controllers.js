@@ -75,7 +75,7 @@ module.exports = postWizyta = () => async (req, res) => {
 module.exports = getIncomplete = () => async (req, res) => {
     try {
     let docs = await Wizyta
-                .find({})
+                .find({typWizyty: "MEDYCYNA_PRACY"})
                 .populate({ path: 'pacjent', model: Pacjent})
                 .lean()
                 .exec()
