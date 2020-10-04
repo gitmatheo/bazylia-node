@@ -7,7 +7,9 @@ module.exports = getWizyty = ()=> async (req, res) => {
     try {
       let docs = await Wizyta
         .find({})
-        .populate({ path: 'pacjent', model: Pacjent})
+        .populate({ path: 'pacjent', model: Pacjent, populate: {
+            path: 'firma', model: Firma
+        }})
         .lean()
         .exec()
   
