@@ -14,7 +14,9 @@ module.exports = getWizyty = ()=> async (req, res) => {
       let docsWithCustomId = []
   
       docs.forEach(doc => {
-        docsWithCustomId.push(replaceMongoIdWithCustomId(doc, "wizytaId"));
+        docsWithCustomId.push({...replaceMongoIdWithCustomId(doc, "wizytaId"),
+        pacjent: replaceMongoIdWithCustomId(doc.pacjent, "pacjentId")
+      });
       })
   
       res.status(200).json([...docsWithCustomId] )

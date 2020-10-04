@@ -2,7 +2,7 @@ const express = require('express');
 const pacjenciControllers = require('./pacjenci.controllers.js')
 const router = express.Router();
 
-const {getPacjenci, updateDecyzja, crudControllers} = pacjenciControllers;
+const {getPacjenci, updateDecyzja, updateDataOrzeczenia, crudControllers} = pacjenciControllers;
 
 // /pacjenci
 router
@@ -25,7 +25,7 @@ router
 // /pacjenci/:id/data-orzeczenia
 router
   .route('/:id/data-orzeczenia')
-  .post(crudControllers.updateOne)
+  .post(updateDataOrzeczenia)
 
 
 

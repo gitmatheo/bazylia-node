@@ -1,5 +1,6 @@
 const crudControllers = require('../../utils/crud');
 const Pacjent = require('./pacjenci.models.js')
+const { ObjectId } = require('mongodb');
 
 module.exports = getPacjenci = (id) => async (req, res) => {
     try {
@@ -23,36 +24,47 @@ module.exports = getPacjenci = (id) => async (req, res) => {
 }
 
 
-module.exports = updateDecyzja = (id) => async (req, res) => {
-
+module.exports = updateDecyzja = () => async (req, res) => {
     try {
-    let docs = await Pacjent
+    let doc = await Pacjent
                 .findByIdAndUpdate(
-                { _id: id },
+                { _id: ObjectId(req.params.id) },
                 { decyzjaUpdated: true,
                     decyzja: req.body.decyzja
                     },
-                function(err, result) {
-                    if (err) {
-                    res.send(err);
-                    } else {
-                    res.send(result);
-                    }
-                }
                 )
                 .lean()
                 .exec()
 
-        if (!docs) {
-        return res.status(400).end()
+        if (!doc) {
+            return res.status(410).end()
         }
-    let newDoc = [];
 
-    docs.forEach(doc => {
-        newDoc.push(replaceMongoIdWithCustomId(doc, doc._id));
-    })
+    res.status(200).end()
 
-    res.status(200).json({counter: docs.length})
+    } catch (e) {
+    console.error(e)
+    res.status(400).end()
+    }
+}
+
+module.exports = updateDataOrzeczenia = () => async (req, res) => {
+    try {
+    let doc = await Pacjent
+                .findByIdAndUpdate(
+                { _id: ObjectId(req.params.id) },
+                { dataOrzeczeniaUpdated: true,
+                    dataOrzeczenia: req.body.dataOrzeczenia
+                    },
+                )
+                .lean()
+                .exec()
+
+        if (!doc) {
+            return res.status(410).end()
+        }
+
+    res.status(200).end()
 
     } catch (e) {
     console.error(e)
@@ -64,6 +76,7 @@ module.exports = updateDecyzja = (id) => async (req, res) => {
 
 module.exports = {
     getPacjenci: getPacjenci("pacjentId"),
-    updateDecyzja: updateDecyzja("pacjentId"),
+    updateDecyzja: updateDecyzja(),
+    updateDataOrzeczenia: updateDataOrzeczenia(),
     crudControllers: crudControllers(Pacjent, "pacjentId")
 }
