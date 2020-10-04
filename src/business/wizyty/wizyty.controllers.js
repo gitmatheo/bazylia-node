@@ -91,23 +91,23 @@ module.exports = getIncomplete = () => async (req, res) => {
 module.exports = getIncompleteCounter = () => async (req, res) => {
     try {
     let docs = await Wizyta
-                .find({ $or:[
-                { 'pacjent.dataOrzeczeniaUpdated': false},
-                { 'pacjent.decyzjaUpdated': false}
-                ]})
+                .find({})
+                .populate({ path: 'pacjent', model: Pacjent})
                 .lean()
                 .exec()
 
         if (!docs) {
         return res.status(400).end()
         }
-    let newDoc = [];
 
-    docs.forEach(doc => {
-        newDoc.push(replaceMongoIdWithCustomId(doc, doc._id));
-    })
+        newDocs=[];
+        docs.forEach(doc => {
+            if(doc.pacjent.dataOrzeczeniaUpdated || doc.pacjent.decyzjaUpdated ) {
+                newDocs.push(doc)
+            }
+        })
 
-    res.status(200).json({counter: docs.length})
+    res.status(200).json({counter: newDocs.length})
 
     } catch (e) {
         console.error(e)
