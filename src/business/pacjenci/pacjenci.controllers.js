@@ -13,7 +13,9 @@ module.exports = getPacjenci = (id) => async (req, res) => {
         let docsWithCustomId = []
 
         docs.forEach(doc => {
-        docsWithCustomId.push(replaceMongoIdWithCustomId(doc, id));
+        docsWithCustomId.push({...replaceMongoIdWithCustomId(doc, id),
+            firma: doc.firma ? replaceMongoIdWithCustomId(doc.firma, "firmaId") : null
+        });
         })
 
         res.status(200).json([...docsWithCustomId] )

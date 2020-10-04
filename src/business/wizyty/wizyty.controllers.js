@@ -45,7 +45,7 @@ module.exports = postWizyta = () => async (req, res) => {
 
         let doc2 = await Pacjent.findByIdAndUpdate(
             { _id: req.body.pacjent.pacjentId },
-            { firma: req.body.pacjent.firma ? req.body.pacjent.firma.firmaId : null,
+            { firma: req.body.pacjent.firma ? ObjectId(req.body.pacjent.firma.firmaId) : null,
                 dataOrzeczeniaUpdated: false,
                 decyzjaUpdated: false},
             function(err, result) {
