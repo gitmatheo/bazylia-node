@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for business/rozliczenia/rozliczenia.services.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">business/rozliczenia</a> rozliczenia.services.js
+    </h1>
+    <div class='clearfix'>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const buildMonthField = require('../../utils/buildMonthField');
+module.exports = mapToRozliczeniaDto = <span class="fstat-no" title="function not covered" >as</span>ync (firmy, wizyty) =&gt; {
+&nbsp;
+const finalArray = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >firmy.forEach(<span class="fstat-no" title="function not covered" >fi</span>rma =&gt; {</span>
+&nbsp;
+&nbsp;
+    const wizytyFiltered = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >    wizyty.map(<span class="fstat-no" title="function not covered" >wi</span>zyta =&gt;{</span>
+<span class="cstat-no" title="statement not covered" >        if(wizyta.firmaId &amp;&amp; wizyta.firmaId === firma.firmaId) {</span>
+<span class="cstat-no" title="statement not covered" >            wizytyFiltered.push(wizyta)</span>
+        }
+    })
+&nbsp;
+&nbsp;
+    const wizytySortedByDate = <span class="cstat-no" title="statement not covered" >wizytyFiltered.sort(<span class="fstat-no" title="function not covered" >(a</span>, b) =&gt; <span class="cstat-no" title="statement not covered" >new Date(a.dataWizyty) - new Date(b.dataWizyty))</span></span>
+&nbsp;
+&nbsp;
+&nbsp;
+    const miesiaceStringi = <span class="cstat-no" title="statement not covered" >[];</span>
+    const wizytyWithMiesiac = <span class="cstat-no" title="statement not covered" >[];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    wizytySortedByDate.forEach(<span class="fstat-no" title="function not covered" >wi</span>zyta =&gt; {</span>
+        const miesiac = <span class="cstat-no" title="statement not covered" >buildMonthField(wizyta.dataWizyty)</span>
+<span class="cstat-no" title="statement not covered" >        miesiaceStringi.push(miesiac)</span>
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        wizytyWithMiesiac.push({...wizyta, miesiac: miesiac })</span>
+    } )
+&nbsp;
+&nbsp;
+    const uniqueMiesiaceStringi = <span class="cstat-no" title="statement not covered" >[...new Set(JSON.parse(JSON.stringify(miesiaceStringi)))];</span>
+&nbsp;
+&nbsp;
+    let miesiaceArray = <span class="cstat-no" title="statement not covered" >[];</span>
+&nbsp;
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    uniqueMiesiaceStringi.forEach(<span class="fstat-no" title="function not covered" >un</span>iqueMiesiac =&gt; {</span>
+        const pacjentsId = <span class="cstat-no" title="statement not covered" >[];</span>
+        let uniqueIds = <span class="cstat-no" title="statement not covered" >[];</span>
+        const miesiaceObject = <span class="cstat-no" title="statement not covered" >{</span>
+            miesiac: uniqueMiesiac,
+            pacjenci: []
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        wizytyWithMiesiac.forEach(<span class="fstat-no" title="function not covered" >wi</span>zyta =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            if(wizyta.miesiac === uniqueMiesiac) {</span>
+<span class="cstat-no" title="statement not covered" >                pacjentsId.push(wizyta.pacjent.pacjentId)</span>
+            }
+        })
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        uniqueIds = [...new Set(JSON.parse(JSON.stringify(pacjentsId)))];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        uniqueIds.forEach(<span class="fstat-no" title="function not covered" >id</span> =&gt; {</span>
+            const pacjenty = <span class="cstat-no" title="statement not covered" >{</span>
+                    pacjent: {},
+                    wizyty: []
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            wizytyWithMiesiac.forEach(<span class="fstat-no" title="function not covered" >wi</span>zyta =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                if(wizyta.pacjent.pacjentId === id &amp;&amp; wizyta.miesiac === uniqueMiesiac ) {</span>
+<span class="cstat-no" title="statement not covered" >                    pacjenty.wizyty.push(wizyta)</span>
+<span class="cstat-no" title="statement not covered" >                    pacjenty.pacjent = wizyta.pacjent</span>
+                }
+            })
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            miesiaceObject.pacjenci.push(pacjenty)</span>
+        })
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        miesiaceArray.push(miesiaceObject)</span>
+&nbsp;
+    })
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if(miesiaceArray.length) {</span>
+<span class="cstat-no" title="statement not covered" >        finalArray.push({</span>
+            firma: firma,
+            miesiace: miesiaceArray,
+        })
+    }
+});
+<span class="cstat-no" title="statement not covered" >    return finalArray;</span>
+}
+&nbsp;
+&nbsp;
+module.exports = mapToRozliczeniaSpecjalistyka = <span class="fstat-no" title="function not covered" >as</span>ync (wizyty) =&gt; {
+        const wizytySortedByDate = <span class="cstat-no" title="statement not covered" >wizyty.sort(<span class="fstat-no" title="function not covered" >(a</span>, b) =&gt; <span class="cstat-no" title="statement not covered" >new Date(a.dataWizyty) - new Date(b.dataWizyty))</span>;</span>
+&nbsp;
+        const pacjentsIds = <span class="cstat-no" title="statement not covered" >[];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        wizytySortedByDate.forEach(<span class="fstat-no" title="function not covered" >wi</span>zyta =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            pacjentsIds.push(wizyta.pacjent.pacjentId)</span>
+        })
+        const uniquePacjents = <span class="cstat-no" title="statement not covered" >[...new Set(JSON.parse(JSON.stringify(pacjentsIds)))];</span>
+&nbsp;
+        const miesiaceArray = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >        uniquePacjents.forEach(<span class="fstat-no" title="function not covered" >un</span>iquePacjent =&gt; {</span>
+&nbsp;
+            const pacjenci = <span class="cstat-no" title="statement not covered" >{</span>
+                pacjent: '',
+                wizyty: []
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            wizytySortedByDate.forEach(<span class="fstat-no" title="function not covered" >wi</span>zyta =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                if(wizyta.pacjent.pacjentId === uniquePacjent) {</span>
+<span class="cstat-no" title="statement not covered" >                    pacjenci.pacjent = wizyta.pacjent</span>
+<span class="cstat-no" title="statement not covered" >                    pacjenci.wizyty.push(wizyta)</span>
+                }
+            })
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            miesiaceArray.push(pacjenci)</span>
+&nbsp;
+        })
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return miesiaceArray;</span>
+    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Sep 29 2020 23:59:19 GMT+0200 (Central European Summer Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

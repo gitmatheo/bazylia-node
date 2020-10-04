@@ -1,0 +1,86 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js install
+
+PATH: 
+  C:\Users\matte\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\matte\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin;C:\Program Files\Java\jdk-13\bin;C:\Program Files\apache-maven-3.6.2\bin;C:\Users\matte\AppData\Local\Microsoft\WindowsApps;C:\Users\matte\AppData\Roaming\npm;C:\Users\matte\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\matte\AppData\Local\Yarn\bin;C:\Users\matte\Desktop\Flutter\flutter_windows_v1.9.1+hotfix.6-stable\flutter\bin;C:\adb;C:\Program Files (x86)\QuickTime\QTSystem;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;C:\Users\matte\AppData\Roaming\npm;C:\Users\matte\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\matte\AppData\Local\Yarn\bin;C:\Users\matte\Desktop\Flutter\flutter_windows_v1.9.1+hotfix.6-stable\flutter\bin;C:\Exercism;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.17.3
+
+Node version: 
+  12.18.3
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: C:\Users\matte\Desktop\Vue\bazylia-node\package.json: Unexpected token } in JSON at position 602
+      at JSON.parse (<anonymous>)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:304:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:315:13
+
+npm manifest: 
+  {
+    "name": "bazylia-node",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.ts",
+    "scripts": {
+  
+      "dev": "nodemon --exec yarn restart",
+      "restart": "rimraf dist && yarn build && yarn start",
+      "start": "node dist/index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "@types/mongoose": "^5.7.28",
+      "@types/node": "^14.0.14",
+      "bcrypt": "^5.0.0",
+      "cors": "^2.8.5",
+      "express": "^4.17.1",
+      "faker": "^4.1.0",
+      "mongoose": "^5.9.7",
+      "swagger-ui-express": "^4.1.4",
+      "typescript": "^3.8.3",
+      "uuid": "^8.1.0",
+      "dotenv": "^8.2.0",
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.3",
+  
+      "@babel/cli": "^7.0.0",
+      "@babel/core": "^7.0.0",
+      "@babel/plugin-proposal-class-properties": "^7.0.0",
+      "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+      "@babel/preset-env": "^7.0.0",
+      "babel-core": "7.0.0-bridge.0",
+      "babel-eslint": "^8.2.1",
+      "babel-jest": "^23.4.2",
+      "cross-env": "^7.0.2",
+      "eslint": "^4.15.0",
+      "eslint-config-prettier": "^2.9.0",
+      "eslint-config-standard": "^11.0.0",
+      "eslint-friendly-formatter": "^3.0.0",
+      "eslint-loader": "^1.7.1",
+      "eslint-plugin-import": "^2.13.0",
+      "eslint-plugin-jest": "^21.15.1",
+      "eslint-plugin-node": "^7.0.1",
+      "eslint-plugin-prettier": "^2.6.2",
+      "eslint-plugin-promise": "^3.8.0",
+      "eslint-plugin-standard": "^3.1.0",
+      "jest": "^23.6.0",
+      "mock-req-res": "^1.0.2",
+      "prettier": "^1.15.2",
+      "rimraf": "^2.6.2",
+      "supertest": "^3.3.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
