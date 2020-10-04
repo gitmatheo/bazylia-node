@@ -3,6 +3,27 @@ const Wizyta = require('./wizyty.models.js')
 const replaceMongoIdWithCustomId = require('../../utils/replace');
 const { ObjectId } = require('mongodb');
 
+module.exports = getWizyty = ()=> async (req, res) => {
+    try {
+      let docs = await Wizyta
+        .find({})
+        .populate({ path: 'pacjent', model: Pacjent})
+        .lean()
+        .exec()
+  
+      let docsWithCustomId = []
+  
+      docs.forEach(doc => {
+        docsWithCustomId.push(replaceMongoIdWithCustomId(doc, "wizytaId"));
+      })
+  
+      res.status(200).json([...docsWithCustomId] )
+    } catch (e) {
+      console.error(e)
+      res.status(400).end()
+    }
+  }
+
 module.exports = postWizyta = () => async (req, res) => {
     const usluga = {
         ...req.body.usluga,
@@ -94,6 +115,7 @@ module.exports = getIncompleteCounter = () => async (req, res) => {
 
 
 module.exports = {
+    getWizyty: getWizyty(),
     postWizyta: postWizyta(),
     getIncomplete: getIncomplete(),
     getIncompleteCounter: getIncompleteCounter(),

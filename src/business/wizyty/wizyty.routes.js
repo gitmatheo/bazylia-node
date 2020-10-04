@@ -2,12 +2,12 @@ const express = require('express');
 const wizytyControllers = require('./wizyty.controllers.js');
 const router = express.Router();
 
-const {postWizyta, getIncomplete, getIncompleteCounter, crudControllers } = wizytyControllers;
+const {postWizyta, getIncomplete, getIncompleteCounter, crudControllers, getWizyty } = wizytyControllers;
 
 // /wizyty
 router
   .route('/')
-  .get(crudControllers.getMany)
+  .get(getWizyty)
   .post(postWizyta)
 
 // /wizyty/incomplete
