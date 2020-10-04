@@ -64,27 +64,27 @@ module.exports = postWizyta = () => async (req, res) => {
 module.exports = getIncomplete = () => async (req, res) => {
     try {
     let docs = await Wizyta
-                .find({ $or:[
-                { 'pacjent.dataOrzeczeniaUpdated': false},
-                { 'pacjent.decyzjaUpdated': false}
-                ]})
+                .find({})
+                .populate({ path: 'pacjent', model: Pacjent})
                 .lean()
                 .exec()
 
         if (!docs) {
         return res.status(400).end()
         }
-    let newDoc = [];
 
-    docs.forEach(doc => {
-        newDoc.push(replaceMongoIdWithCustomId(doc, doc._id));
-    })
+        let newDocs=[];
+        docs.forEach(doc => {
+            if(!doc.pacjent.dataOrzeczeniaUpdated || !doc.pacjent.decyzjaUpdated ) {
+                newDocs.push(replaceMongoIdWithCustomId(doc, "wizytaId"))
+            }
+        })
 
-    res.status(200).json([ ...docs])
+    res.status(200).json([ ...newDocs])
 
     } catch (e) {
-    console.error(e)
-    res.status(400).end()
+        console.error(e)
+        res.status(400).end()
     }
 }
 
