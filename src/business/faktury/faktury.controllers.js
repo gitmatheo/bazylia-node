@@ -288,7 +288,6 @@ module.exports =  getFaktura = (id) => async (req, res) => {
     }
     
     module.exports = getFaktury = ()=> async (req, res) => {
-      console.log("WAAAAAT")
       try {
         let faktury = await Faktura
           .find({})

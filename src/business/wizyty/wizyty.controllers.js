@@ -27,18 +27,20 @@ module.exports = getWizyty = ()=> async (req, res) => {
   }
 
 module.exports = postWizyta = () => async (req, res) => {
-    const usluga = {
-        ...req.body.usluga,
-        _id: ObjectId(req.body.usluga.uslugaId)
-    }
+    // const usluga = {
+    //     ...req.body.usluga,
+    //     _id: ObjectId(req.body.usluga.uslugaId)
+    // }
 
-    delete usluga.uslugaId;
+    // delete usluga.uslugaId;
     try {
-        let doc = await Wizyta.create({ ...req.body,
-                                        pacjent: ObjectId(req.body.pacjent.pacjentId),
-                                        firmaId: ObjectId(req.body.pacjent.firma.firmaId),
-                                    })
+
         if(req.body.typWizyty === "MEDYCYNA_PRACY") {
+        let doc = await Wizyta.create({ ...req.body,
+            pacjent: ObjectId(req.body.pacjent.pacjentId),
+            firmaId: ObjectId(req.body.pacjent.firma.firmaId),
+        })
+
         let doc2 = await Pacjent.findByIdAndUpdate(
             { _id: req.body.pacjent.pacjentId },
             { firma: req.body.pacjent.firma ? req.body.pacjent.firma.firmaId : null},
@@ -52,6 +54,11 @@ module.exports = postWizyta = () => async (req, res) => {
             }
         )
         } else {
+
+        let doc = await Wizyta.create({ ...req.body,
+            pacjent: ObjectId(req.body.pacjent.pacjentId)
+        })
+
         doc = replaceMongoIdWithCustomId(doc, "wizytaId")
         res.status(201).json({...doc})
         }

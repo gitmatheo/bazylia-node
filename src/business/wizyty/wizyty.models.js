@@ -19,8 +19,8 @@ const wizytaSchema = new mongoose.Schema({
   },
   rodzajBadan: {
     type: String,
-    enum : ['WSTEPNE', 'OKRESOWE', 'KONTROLNE', 'CELOWE', 'KONCOWE', 'SANITARNO_EPIDEMIOLOGICZNE'],
-    default: 'WSTEPNE'
+    enum : ['WSTEPNE', 'OKRESOWE', 'KONTROLNE', 'CELOWE', 'KONCOWE', 'SANITARNO_EPIDEMIOLOGICZNE', null],
+    default: null
   },
   dataWizyty: String,
   usluga: Object,
