@@ -87,7 +87,8 @@ module.exports = getIncomplete = () => async (req, res) => {
         let newDocs=[];
         docs.forEach(doc => {
             if(!doc.pacjent.dataOrzeczeniaUpdated || !doc.pacjent.decyzjaUpdated ) {
-                newDocs.push(replaceMongoIdWithCustomId(doc, "wizytaId"))
+                newDocs.push({...replaceMongoIdWithCustomId(doc, "wizytaId"),
+                        pacjent: replaceMongoIdWithCustomId(doc.pacjent, "pacjentId")})
             }
         })
 

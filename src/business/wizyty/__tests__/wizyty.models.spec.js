@@ -35,8 +35,8 @@ describe('Wizyta model', () => {
       const rodzajBadan = Wizyta.schema.obj.rodzajBadan;
       expect(rodzajBadan).toEqual({
         type: String,
-        enum : ['WSTEPNE', 'OKRESOWE', 'KONTROLNE', 'CELOWE', 'KONCOWE', 'SANITARNO_EPIDEMIOLOGICZNE'],
-        default: 'WSTEPNE'
+        enum : ['WSTEPNE', 'OKRESOWE', 'KONTROLNE', 'CELOWE', 'KONCOWE', 'SANITARNO_EPIDEMIOLOGICZNE', null],
+        default: null
       })
     })
 
