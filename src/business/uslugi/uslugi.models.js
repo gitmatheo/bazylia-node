@@ -9,5 +9,5 @@ const uslugaSchema = mongoose.Schema({
   stawkaVat: Number
 });
 
-module.exports = Usluga = mongoose.model('usluga', uslugaSchema, 'uslugi');
+module.exports = Usluga = mongoose.model('Usluga', uslugaSchema, 'uslugi');
   

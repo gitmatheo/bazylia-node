@@ -31,5 +31,5 @@ const pacjentSchema = new mongoose.Schema({
   ulica: String
 });
 
-module.exports = Pacjent = mongoose.model('pacjent', pacjentSchema, 'pacjenci');
+module.exports = Pacjent = mongoose.model('Pacjent', pacjentSchema, 'pacjenci');
 

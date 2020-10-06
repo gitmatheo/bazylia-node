@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=testing jest --forceExit --detectOpenHandles --coverage",
+    "test": "cross-env NODE_ENV=testing jest --forceExit --detectOpenHandles --verbose --runInBand",
+    "test-with-memory-database": "jest --runInBand ./src/utils/__tests__/test.spec.js",
     "build": "babel src --out-dir dist",
     "dev": "nodemon --exec yarn restart",
     "restart": "rimraf dist && yarn build && yarn start",
@@ -22,6 +23,7 @@
     "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
+    "mongodb-memory-server": "^6.0.1",
     "mongoose": "^5.9.7",
     "swagger-ui-express": "^4.1.4",
     "typescript": "^3.8.3",
@@ -59,10 +61,10 @@
     "verbose": true,
     "testURL": "http://localhost/",
     "testEnvironment": "node",
+    "setupTestFrameworkScriptFile": "<rootDir>/test-db-setup.js",
     "testPathIgnorePatterns": [
       "dist/"
     ],
-    "restoreMocks": true,
-    "collectCoverage": true
+    "restoreMocks": true
   }
 }

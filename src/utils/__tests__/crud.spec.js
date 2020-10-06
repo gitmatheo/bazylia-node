@@ -1,22 +1,26 @@
-// const { getOne, getMany, createOne, updateOne, removeOne } = require('../crud'); 
+// const crudControllers = require('../crud'); 
+
+
 // const Pacjent  = require('../../business/pacjenci/pacjenci.models');
-// const User  = require('../../business/user/user.models');
+// // const User  = require('../../business/user/user.models');
 // const mongoose = require('mongoose');
+
+
+// const crud= crudControllers()
+
+// const {getOne, getMany, removeOne, updateOne, createOne} = crud;
+
 
 // describe('crud controllers', () => {
 //   describe('getOne', async () => {
-//     test('finds by authenticated user and id', async () => {
+//     test('finds one patient', async () => {
 //       expect.assertions(2)
 
-//       const user = mongoose.Types.ObjectId()
-//       const list = await Pacjent.create({ login: 'admin', createdBy: user })
+//       const pacjent = await Pacjent.create({ imie: 'Adam', nazwisko: 'Nowak', pesel: 65011946932  })
 
 //       const req = {
 //         params: {
-//           id: list._id
-//         },
-//         user: {
-//           _id: user
+//           id: pacjent._id
 //         }
 //       }
 
@@ -27,25 +31,20 @@
 //           return this
 //         },
 //         json(result) {
-//           expect(result.data._id.toString()).toBe(list._id.toString())
+//           expect(result.data.pacjentId.toString()).toBe(pacjent._id.toString())
 //         }
 //       }
 
-//       await getOne(Pacjent)(req, res)
+//       await getOne(Pacjent, "pacjentId")(req, res)
 //     })
 
 //     test('404 if no doc was found', async () => {
 //       expect.assertions(2)
 
-//       const user = mongoose.Types.ObjectId()
-
 //       const req = {
 //         params: {
 //           id: mongoose.Types.ObjectId()
 //         },
-//         user: {
-//           _id: user
-//         }
 //       }
 
 //       const res = {
@@ -58,7 +57,7 @@
 //         }
 //       }
 
-//       await getOne(Pacjent)(req, res)
+//       await getOne(Pacjent, "pacjentId")(req, res)
 //     })
 //   })
 

@@ -33,5 +33,5 @@ const wizytaSchema = new mongoose.Schema({
 //   wizytaId: Schema.Types.ObjectId
 // });
 
-module.exports = Wizyta = mongoose.model('wizyta', wizytaSchema, 'wizyty');
+module.exports = Wizyta = mongoose.model('Wizyta', wizytaSchema, 'wizyty');
 

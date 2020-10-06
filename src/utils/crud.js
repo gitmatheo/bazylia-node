@@ -8,7 +8,7 @@ module.exports = getOne = (model, id) => async (req, res) => {
       .exec()
 
     if (!doc) {
-      return res.status(400).end()
+      return res.status(404).end()
     }
 
     doc = replaceMongoIdWithCustomId(doc, id)

@@ -45,8 +45,7 @@ describe('Authentication:', () => {
 
     test('creates user and and sends new token from user', async () => {
       expect.assertions(2)
-
-      const req = { body: { login: 'admin', password: 'admin123' } }
+      const req = { body: { login: 'adminek', password: 'adminek123' } }
       const res = {
         status(status) {
           expect(status).toBe(201)
@@ -54,10 +53,10 @@ describe('Authentication:', () => {
         },
         async send(result) {
           let user = await verifyToken(result.token)
-          user = await User.findById(user._id)
+             user = await User.findById(user.id)
             .lean()
             .exec()
-          expect(user.login).toBe('admin')
+          expect(user.login).toBe('adminek')
         }
       }
       await signup(req, res)

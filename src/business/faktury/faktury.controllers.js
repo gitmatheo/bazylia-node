@@ -136,13 +136,10 @@ module.exports =  postFaktura = (id) => async (req, res) => {
     } else {
       let sum = 0;
       wizyty.forEach((wizyta) => {
-        console.log("CCCCCCCCC")
-        console.log(wizyta.usluga)
         sum += wizyta.usluga.cenaZwykla + (wizyta.usluga.cenaZwykla * vat)
       })
-      console.log("HALO HALO")
-      console.log(sum)
-      return sum.toFixed(2);
+
+      return parseFloat(sum).toFixed(2);
     }
   }
   

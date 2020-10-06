@@ -12,6 +12,6 @@ const firmaSchema = new mongoose.Schema({
   ulica: String
 });
 
-module.exports = Firma = mongoose.model('firma', firmaSchema, 'firmy');
+module.exports = Firma = mongoose.model('Firma', firmaSchema, 'firmy');
 
 // module.exports.Firma = Firma;

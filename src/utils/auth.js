@@ -8,13 +8,14 @@ const newToken = user => {
   })
 }
 
-const verifyToken = token =>
-  new Promise((resolve, reject) => {
+const verifyToken = token => {
+  return new Promise((resolve, reject) => {
     jwt.verify(token, config.secrets.jwt, (err, payload) => {
       if (err) return reject(err)
       resolve(payload)
     })
   })
+}
 
 const signup = async (req, res) => {
 
@@ -57,9 +58,9 @@ const login = async (req, res) => {
     const token = newToken(user)
 
     return res.status(201)
-              .cookie('access_token', token, {
-                expires: new Date(Date.now() + 3600000) // cookie will be removed after 1 hour
-              })
+              // .cookie('access_token', token, {
+              //   expires: new Date(Date.now() + 3600000) // cookie will be removed after 1 hour
+              // })
               .send({
                 token: token,
                 username: user.login,
