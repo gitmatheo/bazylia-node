@@ -56,18 +56,10 @@ describe('Faktura model', () => {
         expect(terminPlatnosci).toEqual(Number)
     })
 
-    // test('uslugi', () => {
-    //     const uslugi = Faktura.schema.obj.uslugi;
-    //     expect(uslugi).toEqual([uslugiSubSchema])
-    // })
-
     test('dataUslugi', () => {
         const dataUslugi = Faktura.schema.obj.dataUslugi;
         expect(dataUslugi).toEqual(String)
     })
-
-
-
 
   })
 })

@@ -38,10 +38,7 @@ const remove = collection => {
     } catch(e) {
         console.error(e)
     }
-
-
 }
-
 
 beforeEach(async done => {
   function clearDB() {

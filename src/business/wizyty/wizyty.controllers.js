@@ -29,12 +29,6 @@ module.exports = getWizyty = ()=> async (req, res) => {
   }
 
 module.exports = postWizyta = () => async (req, res) => {
-    // const usluga = {
-    //     ...req.body.usluga,
-    //     _id: ObjectId(req.body.usluga.uslugaId)
-    // }
-
-    // delete usluga.uslugaId;
     try {
 
         if(req.body.typWizyty === "MEDYCYNA_PRACY") {

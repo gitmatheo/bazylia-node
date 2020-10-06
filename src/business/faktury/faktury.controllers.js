@@ -36,7 +36,6 @@ module.exports =  postFaktura = (id) => async (req, res) => {
   
       //update faktura with ID
       wizyty.forEach(async (wizyta) => {
-  
         const wizytaUpdated = await Wizyta.findByIdAndUpdate(
           { _id: ObjectId(wizyta._id) },
           { faktura:  ObjectId(doc._id)})
@@ -62,7 +61,7 @@ module.exports =  postFaktura = (id) => async (req, res) => {
     const date = new Date();
    
     try{
-        let doc = await Faktura.findOne().limit(1).lean().exec()
+        let doc = await Faktura.findOne().sort({ field: 'asc', _id: -1 })
   
         if(!doc) {
           return `1/${date.getMonth()}/${date.getFullYear()}`
@@ -71,6 +70,7 @@ module.exports =  postFaktura = (id) => async (req, res) => {
         }
   
     }catch{
+      console.log("catch elo")
       return `1/${date.getMonth()}/${date.getFullYear()}`;
     }
   }
@@ -121,7 +121,7 @@ module.exports =  postFaktura = (id) => async (req, res) => {
     } else {
       let sumaNetto = 0;
       wizyty.forEach((wizyta) => {
-        sumaNetto += wizyta.usluga.cenaZwykla
+        sumaNetto += parseFloat(wizyta.usluga.cenaZwykla)
       })
       return parseFloat(sumaNetto).toFixed(2);
     }
@@ -136,9 +136,8 @@ module.exports =  postFaktura = (id) => async (req, res) => {
     } else {
       let sum = 0;
       wizyty.forEach((wizyta) => {
-        sum += wizyta.usluga.cenaZwykla + (wizyta.usluga.cenaZwykla * vat)
+        sum += parseFloat(wizyta.usluga.cenaZwykla) + (parseFloat(wizyta.usluga.cenaZwykla) * vat)
       })
-
       return parseFloat(sum).toFixed(2);
     }
   }
@@ -164,9 +163,6 @@ module.exports =  postFaktura = (id) => async (req, res) => {
   }
 
 module.exports =  getFaktura = (id) => async (req, res) => {
-    console.log("Get FAKTURA")
-    console.log(id)
-    console.log(req.params.id)
       try {
     
         let doc = await Faktura
@@ -183,11 +179,7 @@ module.exports =  getFaktura = (id) => async (req, res) => {
           platnik: await getPlatnik(doc),
           uslugi: await getUslugiDlaFaktury(doc)
         }
-    
-    
         doc = replaceMongoIdWithCustomId(faktura, id)
-        console.log("Hello doc")
-        console.log({ ...doc })
     
         res.status(200).json({ ...doc })
       } catch (e) {
@@ -197,8 +189,9 @@ module.exports =  getFaktura = (id) => async (req, res) => {
     }
     
     const getPlatnik = async (faktura) => {
+
       if(faktura.uslugi[0].typWizyty == "MEDYCYNA_PRACY") {
-        const {nazwa, ulica, miasto, kodPocztowy,nip,email} = faktura.firma.nazwa;
+        const {nazwa, ulica, miasto, kodPocztowy,nip,email} = faktura.firma;
         return {
           nazwa,
           ulica,
@@ -216,15 +209,13 @@ module.exports =  getFaktura = (id) => async (req, res) => {
         .lean()
         .exec()
     
-        console.log("SIEMAA SPECJALISTKA")
-        console.log(wizyta[0].pacjent)
     
         const pacjentId = wizyta[0].pacjent;
     
         let pacjent = await Pacjent.findById(ObjectId(pacjentId));
     
         const {imie, nazwisko, ulica, miasto, kodPocztowy, nip, email} = pacjent;
-    
+
         return {
           nazwa: `${imie} ${nazwisko}`,
           ulica,
@@ -317,4 +308,3 @@ module.exports = {
     crudControllers: crudControllers(Fakura, "fakturaId")
 }
 
-module.exports
