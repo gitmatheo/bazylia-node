@@ -81,7 +81,6 @@ const logout = async (req, res) => {
               .clearCookie('access_token', {
                 expires: new Date(Date.now() + 3600000) 
               })
-              // .clearCookie('access_token')
               .send('success')
   } catch (e) {
     console.error(e)

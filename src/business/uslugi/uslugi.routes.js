@@ -14,6 +14,4 @@ router
   .route('/:type')
   .get(getManyByType)
 
-
-
 module.exports = router;

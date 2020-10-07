@@ -28,4 +28,3 @@ router
   .post(updateDataOrzeczenia)
 
 module.exports = router;
-  

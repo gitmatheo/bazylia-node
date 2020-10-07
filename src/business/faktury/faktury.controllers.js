@@ -70,7 +70,6 @@ module.exports =  postFaktura = (id) => async (req, res) => {
         }
   
     }catch{
-      console.log("catch elo")
       return `1/${date.getMonth()}/${date.getFullYear()}`;
     }
   }
@@ -116,7 +115,6 @@ module.exports =  postFaktura = (id) => async (req, res) => {
       // - jeśli wizyty z requestu mają typWizyty==MEDYCYNA_PRACY && (FirmaStatic.ryczalt!=0 && FirmaStatic.ryczalt!=null) zwroc wartosc z FirmaStatic.ryczalt
       // - jeśli nie - wyciągnij z każdej wizyty pole wizyta.usluga.cenaZwykla i je zsumuj -> zwroc tą sume jako sumaNetto
     if(wizyty[0].typWizyty == "MEDYCYNA_PRACY" && (firma.ryczalt!=0 && firma.ryczalt!=null)) {
-      console.log(firma.ryczalt);
       return parseFloat(firma.ryczalt).toFixed(2);
     } else {
       let sumaNetto = 0;

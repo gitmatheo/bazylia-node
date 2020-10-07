@@ -48,9 +48,6 @@ module.exports = getRozliczeniaSpecjalistyka = (id) => async (req, res) => {
 
         const wizytyWithCustomId = [];
         wizyty.forEach(wizyta => {
-            console.log("WIZYTA SPECJALISTYKA")
-            console.log(wizyta)
-            console.log(wizyta.pacjent)
             const newWizyta = {
                 ...replaceMongoIdWithCustomId(wizyta, "wizytaId"),
                 pacjent: replaceMongoIdWithCustomId(wizyta.pacjent, "pacjentId") }
