@@ -1,5 +1,5 @@
-const Faktura = require('../faktury.models');
-const mongoose =require('mongoose'); 
+import { Faktura } from '../faktury.models.js';
+import mongoose from 'mongoose';
 
 describe('Faktura model', () => {
   describe('schema', () => {

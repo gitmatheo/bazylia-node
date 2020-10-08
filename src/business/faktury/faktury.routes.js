@@ -1,6 +1,6 @@
 
-const express = require('express');
-const fakturyControllers = require('./faktury.controllers.js')
+import express from 'express';
+import fakturyControllers from './faktury.controllers.js';
 const router = express.Router();
 
 const { crudControllers, getFaktury, postFaktura, getFaktura } = fakturyControllers;
@@ -19,4 +19,4 @@ router
   .delete(crudControllers.removeOne)
 
 
-module.exports = router;
+export default router;

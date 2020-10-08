@@ -1,4 +1,4 @@
-const router = require('../pacjenci.routes');
+import router from '../pacjenci.routes.js';
 
 describe('pacjenci router', () => {
   test('has crud routes', () => {

@@ -1,8 +1,9 @@
-const { newToken, verifyToken, signup, login, protect } = require('../auth');
-const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
-const config = require('../../config');
-const User  = require('../../business/user/user.models');
+import { newToken, verifyToken, signup, login, protect } from '../auth.js';
+import mongoose from 'mongoose';
+import jwt from 'jsonwebtoken';
+import { User } from '../../business/user/user.models.js';
+import dotenv from 'dotenv';
+dotenv.config()
 
 describe('Authentication:', () => {
   describe('newToken', () => {
@@ -10,7 +11,7 @@ describe('Authentication:', () => {
       const id = 123
       const token = newToken({ id })
 
-      const user = jwt.verify(token, config.secrets.jwt)
+      const user = jwt.verify(token, process.env.JWT_SECRET)
 
       expect(user.id).toBe(id)
     })
@@ -19,7 +20,7 @@ describe('Authentication:', () => {
   describe('verifyToken', () => {
     test('validates jwt and returns payload', async () => {
       const id = 1234
-      const token = jwt.sign({ id }, config.secrets.jwt)
+      const token = jwt.sign({ id }, process.env.JWT_SECRET)
       const user = await verifyToken(token)
       expect(user.id).toBe(id)
     })

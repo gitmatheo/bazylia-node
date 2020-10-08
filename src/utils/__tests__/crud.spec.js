@@ -1,14 +1,8 @@
-// const crudControllers = require('../crud'); 
+// import {getOne, getMany, removeOne, updateOne, createOne} from'../crud.js';
 
-
-// const Pacjent  = require('../../business/pacjenci/pacjenci.models');
-// // const User  = require('../../business/user/user.models');
-// const mongoose = require('mongoose');
-
-
-// const crud= crudControllers()
-
-// const {getOne, getMany, removeOne, updateOne, createOne} = crud;
+// import { Pacjent } from '../../business/pacjenci/pacjenci.models.js';
+// import User from '../../business/user/user.models.js';
+// import mongoose from 'mongoose';
 
 
 // describe('crud controllers', () => {

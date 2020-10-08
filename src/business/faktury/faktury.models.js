@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const uslugiSubSchema = new mongoose.Schema(
   {
@@ -37,6 +37,6 @@ const FakturaSchema = new mongoose.Schema({
   dataUslugi: String,
 });
 
-module.exports = Faktura = mongoose.model('Faktura', FakturaSchema, 'faktury');
+export const Faktura = mongoose.model('Faktura', FakturaSchema, 'faktury');
 
 

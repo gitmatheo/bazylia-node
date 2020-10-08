@@ -1,8 +1,11 @@
-const crudControllers = require('../../utils/crud');
-const Pacjent = require('./pacjenci.models.js')
-const { ObjectId } = require('mongodb');
+import { crudControllers }  from '../../utils/crud.js';
+import { Pacjent } from './pacjenci.models.js';
+import { Firma } from '../firmy/firmy.models.js';
+import mongodb from 'mongodb';
+import replaceMongoIdWithCustomId from '../../utils/replace.js'
 
-module.exports = getPacjenci = (id) => async (req, res) => {
+const {ObjectId} = mongodb;
+export const getPacjenci = (id) => async (req, res) => {
     try {
         let docs = await Pacjent
         .find({})
@@ -23,10 +26,9 @@ module.exports = getPacjenci = (id) => async (req, res) => {
         console.error(e)
         res.status(400).end()
     }
-}
+};
 
-
-module.exports = updateDecyzja = () => async (req, res) => {
+export const updateDecyzja = () => async (req, res) => {
     try {
     let doc = await Pacjent
                 .findByIdAndUpdate(
@@ -48,9 +50,9 @@ module.exports = updateDecyzja = () => async (req, res) => {
     console.error(e)
     res.status(400).end()
     }
-}
+};
 
-module.exports = updateDataOrzeczenia = () => async (req, res) => {
+export const updateDataOrzeczenia = () => async (req, res) => {
     try {
     let doc = await Pacjent
                 .findByIdAndUpdate(
@@ -72,13 +74,11 @@ module.exports = updateDataOrzeczenia = () => async (req, res) => {
     console.error(e)
     res.status(400).end()
     }
-}
+};
 
-
-
-module.exports = {
+export default {
     getPacjenci: getPacjenci("pacjentId"),
     updateDecyzja: updateDecyzja(),
     updateDataOrzeczenia: updateDataOrzeczenia(),
     crudControllers: crudControllers(Pacjent, "pacjentId")
-}
+};

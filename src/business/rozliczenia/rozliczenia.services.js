@@ -1,5 +1,6 @@
-const buildMonthField = require('../../utils/buildMonthField');
-module.exports = mapToRozliczeniaDto = async (firmy, wizyty) => {
+import buildMonthField from '../../utils/buildMonthField.js';
+
+export const mapToRozliczeniaDto = async (firmy, wizyty) => {
 
 const finalArray = [];
 firmy.forEach(firma => {
@@ -77,10 +78,9 @@ firmy.forEach(firma => {
     }
 });
     return finalArray;
-}
+};
 
-
-module.exports = mapToRozliczeniaSpecjalistyka = async (wizyty) => {
+export const mapToRozliczeniaSpecjalistyka = async (wizyty) => {
         const wizytySortedByDate = wizyty.sort((a, b) => new Date(a.dataWizyty) - new Date(b.dataWizyty));
 
         const pacjentsIds = [];
@@ -110,7 +110,7 @@ module.exports = mapToRozliczeniaSpecjalistyka = async (wizyty) => {
         })
 
         return miesiaceArray;
-    }
+    };
 
 
 

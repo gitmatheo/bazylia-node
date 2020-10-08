@@ -1,5 +1,5 @@
 
-module.exports = replaceMongoIdWithCustomId = (mongoDoc, customId) => {
+export default (mongoDoc, customId) => {
     const newObject = JSON.parse(JSON.stringify(mongoDoc))
     const documentCopy = {
       ...newObject,
@@ -11,4 +11,4 @@ module.exports = replaceMongoIdWithCustomId = (mongoDoc, customId) => {
     delete documentCopy.__v;
     
     return documentCopy;
-  }
+  };

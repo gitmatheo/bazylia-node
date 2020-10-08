@@ -1,8 +1,13 @@
-const express = require('express');
-const wizytyControllers = require('./wizyty.controllers.js');
-const router = express.Router();
+import express from 'express';
+// import crudControllers  from './wizyty.controllers.js';
+// import { postWizyta, getIncomplete, getIncompleteCounter, getWizyty }  from './wizyty.controllers.js';
 
-const {postWizyta, getIncomplete, getIncompleteCounter, crudControllers, getWizyty } = wizytyControllers;
+import { wizytyControllers }  from './wizyty.controllers.js';
+
+const { postWizyta, getIncomplete, getIncompleteCounter, getWizyty, crudControllers } = wizytyControllers;
+
+
+const router = express.Router();
 
 // /wizyty
 router
@@ -27,8 +32,4 @@ router
   .put(crudControllers.updateOne)
   .delete(crudControllers.removeOne)
 
-
-
-
-
-module.exports = router;
+export default router;

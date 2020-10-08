@@ -1,8 +1,11 @@
 
-const mapToRozliczeinaDto = require('./rozliczenia.services');
-const replaceMongoIdWithCustomId = require('../../utils/replace');
+import { mapToRozliczeniaDto, mapToRozliczeniaSpecjalistyka } from './rozliczenia.services.js';
+import replaceMongoIdWithCustomId from '../../utils/replace.js';
+import { Wizyta } from '../wizyty/wizyty.models.js';
+import { Pacjent } from '../pacjenci/pacjenci.models.js';
+import { Firma } from '../firmy/firmy.models.js';
 
-module.exports = getRozliczeniaMedycynaPracy = (id) => async (req, res) => {
+export const getRozliczeniaMedycynaPracy = (id) => async (req, res) => {
     try {
         let wizyty = await Wizyta
                             .find({typWizyty: "MEDYCYNA_PRACY"})
@@ -35,10 +38,9 @@ module.exports = getRozliczeniaMedycynaPracy = (id) => async (req, res) => {
         res.status(400)
     }
 
-}
+};
 
-
-module.exports = getRozliczeniaSpecjalistyka = (id) => async (req, res) => {
+export const getRozliczeniaSpecjalistyka = (id) => async (req, res) => {
     try {
         let wizyty = await Wizyta
                             .find({typWizyty: "SPECJALISTYKA"})
@@ -63,9 +65,9 @@ module.exports = getRozliczeniaSpecjalistyka = (id) => async (req, res) => {
         console.error(e)
         res.status(400)
     }
-}
+};
 
-module.exports = rozliczeniaControllers = {
+export default {
     getRozliczeniaMedycynaPracy: getRozliczeniaMedycynaPracy(),
     getRozliczeniaSpecjalistyka: getRozliczeniaSpecjalistyka()
-}
+};

@@ -1,6 +1,6 @@
 
-const express = require('express');
-const controllers = require('./firmy.controllers')
+import express from 'express';
+import controllers from './firmy.controllers.js';
 const router = express.Router();
 
 // /firmy
@@ -16,4 +16,4 @@ router
   .put(controllers.updateOne)
   .delete(controllers.removeOne)
 
-module.exports = router;
+export default router;

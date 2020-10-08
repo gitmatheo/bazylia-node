@@ -1,4 +1,4 @@
-const router = require('../wizyty.routes');
+import router from '../wizyty.routes.js';
 
 describe('wizyty router', () => {
   test('has crud routes', () => {

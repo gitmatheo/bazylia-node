@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const firmaSchema = new mongoose.Schema({
   firmaId: mongoose.Schema.Types.ObjectId,
@@ -12,6 +12,5 @@ const firmaSchema = new mongoose.Schema({
   ulica: String
 });
 
-module.exports = Firma = mongoose.model('Firma', firmaSchema, 'firmy');
+export const Firma = mongoose.model('Firma', firmaSchema, 'firmy');
 
-// module.exports.Firma = Firma;

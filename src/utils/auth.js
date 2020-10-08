@@ -1,23 +1,25 @@
-const config = require('../config/index');
-const User = require('../business/user/user.models');
-const jwt = require('jsonwebtoken');
+import { User } from '../business/user/user.models.js';
+import jwt from 'jsonwebtoken';
 
-const newToken = user => {
-  return jwt.sign({ id: user.id }, config.secrets.jwt, {
-    expiresIn: config.secrets.jwtExp
+import dotenv from 'dotenv';
+dotenv.config()
+
+export const newToken = user => {
+  return jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN
   })
 }
 
-const verifyToken = token => {
+export const verifyToken = token => {
   return new Promise((resolve, reject) => {
-    jwt.verify(token, config.secrets.jwt, (err, payload) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
       if (err) return reject(err)
       resolve(payload)
     })
   })
 }
 
-const signup = async (req, res) => {
+export const signup = async (req, res) => {
 
   if (!req.body.login || !req.body.password) {
     return res.status(400).send({ message: 'need login and password' })
@@ -33,7 +35,7 @@ const signup = async (req, res) => {
   }
 }
 
-const login = async (req, res) => {
+export const login = async (req, res) => {
   if (!req.body.login || !req.body.password) {
     return res.status(401).send({ message: 'need login and password' })
   }
@@ -73,7 +75,7 @@ const login = async (req, res) => {
 }
 
 
-const logout = async (req, res) => {
+export const logout = async (req, res) => {
 
   try {
 
@@ -88,7 +90,7 @@ const logout = async (req, res) => {
   }
 }
 
-const protect = async (req, res, next) => {
+export const protect = async (req, res, next) => {
   const bearer = req.headers.authorization
 
   if (!bearer || !bearer.startsWith('Bearer ')) {
@@ -116,12 +118,11 @@ const protect = async (req, res, next) => {
   next()
 }
 
-
-module.exports = {
-  newToken,
-  verifyToken,
-  signup,
-  login,
-  logout,
-  protect
-}
+// export default {
+//   newToken,
+//   verifyToken,
+//   signup,
+//   login,
+//   logout,
+//   protect
+// };

@@ -1,5 +1,5 @@
-const controllers = require ('../uslugi.controllers');
-const _ = require ('lodash');
+import controllers from '../uslugi.controllers.js';
+import _ from 'lodash';
 
 describe('uslugi controllers', () => {
   test('has crud controllers', () => {

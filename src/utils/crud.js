@@ -1,6 +1,7 @@
 
-const replaceMongoIdWithCustomId = require('../utils/replace');
-module.exports = getOne = (model, id) => async (req, res) => {
+import replaceMongoIdWithCustomId from '../utils/replace.js';
+
+export const getOne = (model, id) => async (req, res) => {
   try {
     let doc = await model
       .findById(req.params.id)
@@ -18,8 +19,9 @@ module.exports = getOne = (model, id) => async (req, res) => {
     console.error(e)
     res.status(400).end()
   }
-}
-module.exports = getMany = (model, id)=> async (req, res) => {
+};
+
+export const getMany = (model, id)=> async (req, res) => {
   try {
     let docs = await model
       .find({})
@@ -37,9 +39,9 @@ module.exports = getMany = (model, id)=> async (req, res) => {
     console.error(e)
     res.status(400).end()
   }
-}
+};
 
-module.exports =  createOne = (model, id) => async (req, res) => {
+export const createOne = (model, id) => async (req, res) => {
   try {
 
     let doc = await model.create({ ...req.body })
@@ -51,9 +53,9 @@ module.exports =  createOne = (model, id) => async (req, res) => {
     console.error(e)
     res.status(400).end()
   }
-}
+};
 
-module.exports = updateOne = (model, id) => async (req, res) => {
+export const updateOne = (model, id) => async (req, res) => {
   try {
     let updatedDoc = await model
       .findOneAndUpdate(
@@ -75,8 +77,9 @@ module.exports = updateOne = (model, id) => async (req, res) => {
     console.error(e)
     res.status(400).end()
   }
-}
-module.exports = removeOne = (model, id) => async (req, res) => {
+};
+
+export const removeOne = (model, id) => async (req, res) => {
   try {
     let removed = await model.findOneAndRemove({ _id: req.params.id })
 
@@ -90,13 +93,12 @@ module.exports = removeOne = (model, id) => async (req, res) => {
     console.error(e)
     res.status(400).end()
   }
-}
+};
 
-
-module.exports = crudControllers = (model, id) => ({
+export const crudControllers = (model, id) => ({
   removeOne: removeOne(model, id),
   updateOne: updateOne(model, id),
   getMany: getMany(model, id),
   getOne: getOne(model, id),
   createOne: createOne(model, id)
-})
+});

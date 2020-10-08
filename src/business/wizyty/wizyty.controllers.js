@@ -1,9 +1,13 @@
-const crudControllers = require('../../utils/crud');
-const Wizyta = require('./wizyty.models.js')
-const replaceMongoIdWithCustomId = require('../../utils/replace');
-const { ObjectId } = require('mongodb');
+import { crudControllers }from '../../utils/crud.js';
+import { Wizyta } from './wizyty.models.js';
+import { Firma } from '../firmy/firmy.models.js';
+import { Pacjent } from '../pacjenci/pacjenci.models.js';
+import replaceMongoIdWithCustomId from '../../utils/replace.js';
+import mongodb  from 'mongodb';
 
-module.exports = getWizyty = ()=> async (req, res) => {
+const { ObjectId } = mongodb;
+
+export const getWizyty = ()=> async (req, res) => {
     try {
       let docs = await Wizyta
         .find({})
@@ -26,9 +30,9 @@ module.exports = getWizyty = ()=> async (req, res) => {
       console.error(e)
       res.status(400).end()
     }
-  }
+  };
 
-module.exports = postWizyta = () => async (req, res) => {
+export const postWizyta = () => async (req, res) => {
     try {
 
         if(req.body.typWizyty === "MEDYCYNA_PRACY") {
@@ -64,9 +68,9 @@ module.exports = postWizyta = () => async (req, res) => {
         console.error(e)
         res.status(400).end()
     }
-}
+};
 
-module.exports = getIncomplete = () => async (req, res) => {
+export const getIncomplete = () => async (req, res) => {
     try {
     let docs = await Wizyta
                 .find({typWizyty: "MEDYCYNA_PRACY"})
@@ -92,9 +96,9 @@ module.exports = getIncomplete = () => async (req, res) => {
         console.error(e)
         res.status(400).end()
     }
-}
+};
 
-module.exports = getIncompleteCounter = () => async (req, res) => {
+export const getIncompleteCounter = () => async (req, res) => {
     try {
     let docs = await Wizyta
                 .find({typWizyty: "MEDYCYNA_PRACY"})
@@ -119,14 +123,12 @@ module.exports = getIncompleteCounter = () => async (req, res) => {
         console.error(e)
         res.status(400).end()
     }
-}
+};
 
-
-module.exports = {
+export const wizytyControllers = {
     getWizyty: getWizyty(),
     postWizyta: postWizyta(),
     getIncomplete: getIncomplete(),
     getIncompleteCounter: getIncompleteCounter(),
     crudControllers: crudControllers(Wizyta, "wizytaId")
 }
-

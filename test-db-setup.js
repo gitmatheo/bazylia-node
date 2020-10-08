@@ -1,17 +1,16 @@
 
-const mongoose = require('mongoose');
-const _ = require('lodash');
-const User = require('./src/business/user/user.models.js');
-const Faktura = require('./src/business/faktury/faktury.models.js');
-const Firma = require('./src/business/firmy/firmy.models.js');
-const Pacjent = require('./src/business/pacjenci/pacjenci.models.js');
-const Usluga = require('./src/business/uslugi/uslugi.models.js');
-const Wizyta = require('./src/business/wizyty/wizyty.models.js');
+import mongoose from 'mongoose';
+import _ from 'lodash';
+import {User} from './src/business/user/user.models.js';
+import {Faktura} from './src/business/faktury/faktury.models.js';
+import {Firma} from './src/business/firmy/firmy.models.js';
+import {Pacjent} from './src/business/pacjenci/pacjenci.models.js';
+import {Usluga} from './src/business/uslugi/uslugi.models.js';
+import {Wizyta} from './src/business/wizyty/wizyty.models.js';
+import {MongoMemoryServer} from 'mongodb-memory-server';
 
 const models = { User, Faktura, Firma, Pacjent, Usluga, Wizyta };
-// const models = { User };
 
-const {MongoMemoryServer} = require('mongodb-memory-server');
 const mongod = new MongoMemoryServer();
 
 const mongodbInMemoryServer = async () => {

@@ -1,5 +1,5 @@
-const controllers = require ('../wizyty.controllers');
-const _ = require ('lodash');
+import { wizytyControllers } from '../wizyty.controllers.js';
+import _ from 'lodash';
 
 describe('wizyty controllers', () => {
   test('has crud controllers', () => {
@@ -12,7 +12,7 @@ describe('wizyty controllers', () => {
     ]
 
     crudMethods.forEach(name =>
-      expect(_.isFunction(controllers.crudControllers[name])).toBe(true)
+      expect(_.isFunction(wizytyControllers.crudControllers[name])).toBe(true)
     )
   })
 })

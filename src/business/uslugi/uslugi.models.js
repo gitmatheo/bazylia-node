@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const uslugaSchema = mongoose.Schema({
   uslugaId: mongoose.Schema.Types.ObjectId,
@@ -9,5 +9,5 @@ const uslugaSchema = mongoose.Schema({
   stawkaVat: Number
 });
 
-module.exports = Usluga = mongoose.model('Usluga', uslugaSchema, 'uslugi');
+export const Usluga = mongoose.model('Usluga', uslugaSchema, 'uslugi');
   

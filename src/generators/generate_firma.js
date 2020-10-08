@@ -1,6 +1,5 @@
-const faker = require('faker');
-const fs = require('fs');
-
+import faker from 'faker';
+import fs from 'fs';
 function generateFirmy(numberOfCompaniesToGenerate) {
   let firmy = [];
 

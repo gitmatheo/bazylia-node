@@ -1,9 +1,14 @@
-const crudControllers = require('../../utils/crud');
-const Fakura = require('./faktury.models.js')
-const { ObjectId } = require('mongodb');
-const buildMonthField = require('../../utils/buildMonthField');
+import { crudControllers }from '../../utils/crud.js';
+import { Faktura } from './faktury.models.js';
+import { Wizyta } from '../wizyty/wizyty.models.js';
+import { Firma } from '../firmy/firmy.models.js';
+import mongodb from 'mongodb';
+import buildMonthField from '../../utils/buildMonthField.js';
+import replaceMongoIdWithCustomId from '../../utils/replace.js';
 
-module.exports =  postFaktura = (id) => async (req, res) => {
+const { ObjectId } = mongodb;
+
+export const  postFaktura = (id) => async (req, res) => {
     try {
       // 1. pobierz z db wszystkie wizyty z requestu i sprawdź czy któraś z nich ma pole faktura wypełnione, jeśli tak - odpowiedz z http 409
       let objIds = req.body.wizyty.map(id => ObjectId(id));
@@ -160,7 +165,7 @@ module.exports =  postFaktura = (id) => async (req, res) => {
     }
   }
 
-module.exports =  getFaktura = (id) => async (req, res) => {
+export const  getFaktura = (id) => async (req, res) => {
       try {
     
         let doc = await Faktura
@@ -240,16 +245,17 @@ module.exports =  getFaktura = (id) => async (req, res) => {
     
     if(!faktura.firma.ryczalt) {
     
-      let uslugi = faktura.uslugi
+      const uslugi = faktura.uslugi
     
-      uslugiId= [];
+      const uslugiId= [];
+
       uslugi.forEach(usluga => {
         uslugiId.push(usluga.uslugaId);
       })
     
-      let uniqueUslugiID = [...new Set(JSON.parse(JSON.stringify(uslugiId)))];
+      const uniqueUslugiID = [...new Set(JSON.parse(JSON.stringify(uslugiId)))];
     
-      uniqueUslugi = [];
+      const uniqueUslugi = [];
       uniqueUslugiID.forEach(id => {
         uniqueUslugi.push(uslugi.find( (usluga) => {
           return usluga.uslugaId == id;
@@ -273,7 +279,7 @@ module.exports =  getFaktura = (id) => async (req, res) => {
     
     }
     
-    module.exports = getFaktury = ()=> async (req, res) => {
+    export const getFaktury = ()=> async (req, res) => {
       try {
         let faktury = await Faktura
           .find({})
@@ -299,10 +305,10 @@ module.exports =  getFaktura = (id) => async (req, res) => {
     }
 
 
-module.exports = {
+export default {
     getFaktury: getFaktury(),
     postFaktura: postFaktura("fakturaId"),
     getFaktura: getFaktura("fakturaId"),
-    crudControllers: crudControllers(Fakura, "fakturaId")
+    crudControllers: crudControllers(Faktura, "fakturaId")
 }
 

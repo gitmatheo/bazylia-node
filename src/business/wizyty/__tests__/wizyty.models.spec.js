@@ -1,5 +1,5 @@
-const Wizyta = require('../wizyty.models');
-const mongoose =require('mongoose'); 
+import { Wizyta } from '../wizyty.models.js';
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 describe('Wizyta model', () => {

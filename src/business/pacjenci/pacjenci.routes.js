@@ -1,5 +1,5 @@
-const express = require('express');
-const pacjenciControllers = require('./pacjenci.controllers.js')
+import express from 'express';
+import pacjenciControllers from './pacjenci.controllers.js';
 const router = express.Router();
 
 const {getPacjenci, updateDecyzja, updateDataOrzeczenia, crudControllers} = pacjenciControllers;
@@ -27,4 +27,4 @@ router
   .route('/:id/data-orzeczenia')
   .post(updateDataOrzeczenia)
 
-module.exports = router;
+export default router;

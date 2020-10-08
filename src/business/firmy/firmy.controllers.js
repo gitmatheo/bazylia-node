@@ -1,4 +1,4 @@
-const crudControllers = require('../../utils/crud');
-const Firma = require('./firmy.models.js')
+import { crudControllers }from '../../utils/crud.js';
+import { Firma } from './firmy.models.js';
 
-module.exports = crudControllers(Firma, "firmaId");
+export default crudControllers(Firma, "firmaId");

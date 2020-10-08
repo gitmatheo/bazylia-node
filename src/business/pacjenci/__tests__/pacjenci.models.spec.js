@@ -1,5 +1,5 @@
-const Pacjent = require('../pacjenci.models');
-const mongoose =require('mongoose'); 
+import { Pacjent } from '../pacjenci.models.js';
+import mongoose from 'mongoose';
 
 describe('Pacjent model', () => {
   describe('schema', () => {

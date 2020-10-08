@@ -1,5 +1,5 @@
-const express = require('express');
-const rozliczeniaControllers = require('./rozliczenia.controllers.js')
+import express from 'express';
+import rozliczeniaControllers from './rozliczenia.controllers.js';
 const router = express.Router();
 
 // /rozliczenia/medycyna-pracy
@@ -14,4 +14,4 @@ router
 
 
 
-module.exports = router;
+export default router;

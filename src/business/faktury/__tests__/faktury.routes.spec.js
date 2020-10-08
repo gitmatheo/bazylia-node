@@ -1,4 +1,4 @@
-const router = require('../faktury.routes');
+import router from '../faktury.routes';
 
 describe('faktury router', () => {
   test('has crud routes', () => {

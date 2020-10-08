@@ -1,5 +1,5 @@
-const express = require('express');
-const {signup, login, logout} = require('../utils/auth.js')
+import express from 'express';
+import { signup, login, logout } from '../utils/auth.js';
 const router = express.Router();
 
 // /signup
@@ -17,4 +17,4 @@ router
 .route('/')
 .post(logout)
 
-module.exports = router;
+export default router;

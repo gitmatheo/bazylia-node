@@ -1,5 +1,5 @@
-const Firma = require('../firmy.models');
-const mongoose =require('mongoose'); 
+import { Firma } from '../firmy.models.js';
+import mongoose from 'mongoose';
 
 describe('Firma model', () => {
   describe('schema', () => {

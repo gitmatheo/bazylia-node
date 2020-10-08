@@ -1,6 +1,5 @@
 // import mongoose from 'mongoose'
-const mongoose = require('mongoose');
-const Firma = require('../firmy/firmy.models');
+import mongoose from 'mongoose';
 
 const pacjentSchema = new mongoose.Schema({
   pacjentId: mongoose.Schema.Types.ObjectId,
@@ -31,5 +30,5 @@ const pacjentSchema = new mongoose.Schema({
   ulica: String
 });
 
-module.exports = Pacjent = mongoose.model('Pacjent', pacjentSchema, 'pacjenci');
+export const Pacjent = mongoose.model('Pacjent', pacjentSchema, 'pacjenci');
 

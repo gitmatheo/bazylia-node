@@ -1,5 +1,5 @@
-const controllers = require ('../rozliczenia.controllers');
-const _ = require ('lodash');
+import controllers from '../rozliczenia.controllers.js';
+import _ from 'lodash';
 
 describe('rozliczenia controllers', () => {
   test('has crud controllers', () => {

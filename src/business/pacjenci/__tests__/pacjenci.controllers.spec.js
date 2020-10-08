@@ -1,5 +1,5 @@
-const controllers = require ('../../pacjenci/pacjenci.controllers');
-const _ = require ('lodash');
+import controllers from '../../pacjenci/pacjenci.controllers';
+import _ from 'lodash';
 
 describe('pacjenci controllers', () => {
   test('has crud controllers', () => {

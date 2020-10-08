@@ -1,5 +1,5 @@
-const Usluga = require('../uslugi.models');
-const mongoose =require('mongoose'); 
+import { Usluga } from '../uslugi.models.js';
+import mongoose from 'mongoose';
 
 describe('Usluga model', () => {
   describe('schema', () => {

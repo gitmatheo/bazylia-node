@@ -1,5 +1,5 @@
-const express = require('express');
-const uslugiControllers = require('./uslugi.controllers.js')
+import express from 'express';
+import uslugiControllers from './uslugi.controllers.js';
 const router = express.Router();
 
 const { getManyByType, crudControllers } = uslugiControllers;
@@ -14,4 +14,4 @@ router
   .route('/:type')
   .get(getManyByType)
 
-module.exports = router;
+export default router;

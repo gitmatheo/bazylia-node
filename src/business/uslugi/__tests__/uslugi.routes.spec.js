@@ -1,4 +1,4 @@
-const router = require('../uslugi.routes');
+import router from '../uslugi.routes.js';
 
 describe('uslugi router', () => {
   test('has crud routes', () => {

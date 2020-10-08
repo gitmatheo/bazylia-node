@@ -1,11 +1,8 @@
-const mongoose = require('mongoose');
-const Pacjent = require('../pacjenci/pacjenci.models');
-const Usluga = require('../uslugi/uslugi.models');
+import mongoose from 'mongoose';
+
 const Schema = mongoose.Schema;
 
-
-
-const wizytaSchema = new mongoose.Schema({
+const wizytaSchema = new Schema({
   wizytaId: Schema.Types.ObjectId,
   firmaId: Schema.Types.ObjectId,
   pacjent: {
@@ -27,11 +24,4 @@ const wizytaSchema = new mongoose.Schema({
   faktura: Schema.Types.Mixed
 });
 
-// const wizytaRozliczeniaSchema = new mongoose.Schema({
-//   dataWizyty: String,
-//   usluga: Usluga,
-//   wizytaId: Schema.Types.ObjectId
-// });
-
-module.exports = Wizyta = mongoose.model('Wizyta', wizytaSchema, 'wizyty');
-
+export const Wizyta = mongoose.model('Wizyta', wizytaSchema, 'wizyty');

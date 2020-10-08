@@ -1,4 +1,4 @@
-const router = require('../rozliczenia.routes');
+import router from '../rozliczenia.routes.js';
 
 describe('rozliczenia router', () => {
   test('has crud routes', () => {

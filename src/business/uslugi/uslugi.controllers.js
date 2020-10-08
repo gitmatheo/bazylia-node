@@ -1,7 +1,8 @@
-const crudControllers = require('../../utils/crud');
-const Usluga = require('./uslugi.models.js')
+import { crudControllers }from '../../utils/crud.js';
+import { Usluga } from './uslugi.models.js';
+import replaceMongoIdWithCustomId from '../../utils/replace.js'
 
-module.exports = getManyByType = () => async (req, res) => {
+export const getManyByType = () => async (req, res) => {
     try {
         let docs = await Usluga
         .find({typWizyty: changeStringToProperTypWizyty(req.params.type)})
@@ -21,13 +22,13 @@ module.exports = getManyByType = () => async (req, res) => {
         console.error(e)
         res.status(400).end()
     }
-}
+};
 
 const changeStringToProperTypWizyty = (type) => {
     return type.toUpperCase().replace(/-/g, '_');
 }
 
-module.exports = {
+export default {
     getManyByType: getManyByType(),
     crudControllers: crudControllers(Usluga, "uslugaId"),
-}
+};

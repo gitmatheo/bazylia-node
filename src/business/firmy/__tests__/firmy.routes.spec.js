@@ -1,4 +1,4 @@
-const router = require('../firmy.routes');
+import router from '../firmy.routes';
 
 describe('firmy router', () => {
   test('has crud routes', () => {

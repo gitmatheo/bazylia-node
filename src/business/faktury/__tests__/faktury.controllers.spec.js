@@ -1,5 +1,5 @@
-const controllers = require ('../faktury.controllers');
-const _ = require ('lodash');
+import controllers from '../faktury.controllers';
+import _ from 'lodash';
 
 describe('faktury controllers', () => {
   test('has crud controllers', () => {
