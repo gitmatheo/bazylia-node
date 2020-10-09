@@ -47,3 +47,4 @@ app.listen(process.env.PORT, () => {
 //3. add toObjectDTOs mappers
 //4. add toObjectEntities mappers
 //5. extract services from controllers that require it and separate responsibilites
+//6. .lean() .exec() ? 

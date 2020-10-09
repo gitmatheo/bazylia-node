@@ -1,9 +1,10 @@
 
-import { mapToRozliczeniaDto, mapToRozliczeniaSpecjalistyka } from './rozliczenia.services.js';
-import replaceMongoIdWithCustomId from '../../utils/replace.js';
+import { mapToRozliczeniaMedycynaPracyDto, mapToRozliczeniaSpecjalistyka } from './rozliczenia.services.js';
 import { Wizyta } from '../wizyty/wizyty.models.js';
 import { Pacjent } from '../pacjenci/pacjenci.models.js';
 import { Firma } from '../firmy/firmy.models.js';
+import { mapToFirmaDTO } from './rozliczenia.mappers.js';
+import { mapToWizytaDTO } from '../wizyty/wizyty.mappers.js';
 
 export const getRozliczeniaMedycynaPracy = (id) => async (req, res) => {
     try {
@@ -15,23 +16,12 @@ export const getRozliczeniaMedycynaPracy = (id) => async (req, res) => {
 
         let firmy = await Firma.find({})
 
-        const firmyWithCustomId = [];
-        firmy.forEach(firma => {
-            firmyWithCustomId.push(replaceMongoIdWithCustomId(firma, "firmaId"));
-        })
+        wizyty = wizyty.map(wizyta => mapToWizytaDTO(wizyta));
 
-        const wizytyWithCustomId = [];
-        wizyty.forEach(wizyta => {
-            const newWizyta = {
-                ...replaceMongoIdWithCustomId(wizyta, "wizytaId"),
-                pacjent: replaceMongoIdWithCustomId(wizyta.pacjent, "pacjentId") }
+        firmy = firmy.map(firma=> mapToFirmaDTO(firma));
 
-            wizytyWithCustomId.push(newWizyta);
-        })
-
-        mapToRozliczeniaDto(firmyWithCustomId, wizytyWithCustomId).then(results => {
-                    res.status(200).json( results )
-        })
+        mapToRozliczeniaMedycynaPracyDto(firmy, wizyty)
+            .then(results => res.status(200).json(results))
 
     } catch(e) {
         console.error(e)
@@ -40,7 +30,7 @@ export const getRozliczeniaMedycynaPracy = (id) => async (req, res) => {
 
 };
 
-export const getRozliczeniaSpecjalistyka = (id) => async (req, res) => {
+export const getRozliczeniaSpecjalistyka = () => async (req, res) => {
     try {
         let wizyty = await Wizyta
                             .find({typWizyty: "SPECJALISTYKA"})
@@ -48,18 +38,10 @@ export const getRozliczeniaSpecjalistyka = (id) => async (req, res) => {
                                 path: 'firma', model: Firma
                             }})
 
-        const wizytyWithCustomId = [];
-        wizyty.forEach(wizyta => {
-            const newWizyta = {
-                ...replaceMongoIdWithCustomId(wizyta, "wizytaId"),
-                pacjent: replaceMongoIdWithCustomId(wizyta.pacjent, "pacjentId") }
+        wizyty = wizyty.map(wizyta => mapToWizytaDTO(wizyta));
 
-            wizytyWithCustomId.push(newWizyta);
-        })
-
-        mapToRozliczeniaSpecjalistyka(wizytyWithCustomId).then(results => {
-                    res.status(200).json( results )
-        })
+        mapToRozliczeniaSpecjalistyka(wizyty)
+            .then(results => res.status(200).json(results));
 
     } catch(e) {
         console.error(e)

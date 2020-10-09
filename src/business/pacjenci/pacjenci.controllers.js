@@ -2,26 +2,20 @@ import { crudControllers }  from '../../utils/crud.js';
 import { Pacjent } from './pacjenci.models.js';
 import { Firma } from '../firmy/firmy.models.js';
 import mongodb from 'mongodb';
-import replaceMongoIdWithCustomId from '../../utils/replace.js'
+import { mapToPacjentDTO } from './pacjenci.mappers.js';
 
 const {ObjectId} = mongodb;
-export const getPacjenci = (id) => async (req, res) => {
+export const getPacjenci = () => async (req, res) => {
     try {
-        let docs = await Pacjent
+        let pacjenci = await Pacjent
         .find({})
         .populate({ path: 'firma', model: Firma})
         .lean()
         .exec()
 
-        let docsWithCustomId = []
+        pacjenci = pacjenci.map(pacjent => mapToPacjentDTO(pacjent))
 
-        docs.forEach(doc => {
-        docsWithCustomId.push({...replaceMongoIdWithCustomId(doc, id),
-            firma: doc.firma ? replaceMongoIdWithCustomId(doc.firma, "firmaId") : null
-        });
-        })
-
-        res.status(200).json([...docsWithCustomId] )
+        res.status(200).json(pacjenci)
     } catch (e) {
         console.error(e)
         res.status(400).end()

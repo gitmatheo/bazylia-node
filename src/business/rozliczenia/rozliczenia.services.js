@@ -1,115 +1,97 @@
 import buildMonthField from '../../utils/buildMonthField.js';
 
-export const mapToRozliczeniaDto = async (firmy, wizyty) => {
+export const mapToRozliczeniaMedycynaPracyDto = async (companies, visits) => {
 
 const finalArray = [];
-firmy.forEach(firma => {
+companies.forEach(firma => {
 
+    const visitsFiltered = visits.filter(wizyta => wizyta.firmaId && wizyta.firmaId == firma.firmaId);
+    const visitsSortedByDate = visitsFiltered.sort((a, b) => new Date(a.dataWizyty) - new Date(b.dataWizyty))
 
-    const wizytyFiltered = [];
-    wizyty.map(wizyta =>{
-        if(wizyta.firmaId && wizyta.firmaId === firma.firmaId) {
-            wizytyFiltered.push(wizyta)
-        }
-    })
+    const monthStrings = [];
 
-    const wizytySortedByDate = wizytyFiltered.sort((a, b) => new Date(a.dataWizyty) - new Date(b.dataWizyty))
-
-
-
-    const miesiaceStringi = [];
-    const wizytyWithMiesiac = [];
-
-    wizytySortedByDate.forEach(wizyta => {
-        const miesiac = buildMonthField(wizyta.dataWizyty)
-        miesiaceStringi.push(miesiac)
-
-
-        wizytyWithMiesiac.push({...wizyta, miesiac: miesiac })
+    const visitsWithMonth = visitsSortedByDate.map(wizyta => {
+        const month = buildMonthField(wizyta.dataWizyty)
+        monthStrings.push(month)
+        return {...wizyta, miesiac: month }
     } )
 
 
-    const uniqueMiesiaceStringi = [...new Set(JSON.parse(JSON.stringify(miesiaceStringi)))];
+    const uniqueMonthsStrings = [...new Set(JSON.parse(JSON.stringify(monthStrings)))];
+
+    const monthsArray = [];
+
+    uniqueMonthsStrings.forEach(uniqueMiesiac => {
+
+        const patientsIds = visitsWithMonth
+                            .filter(wizyta => wizyta.miesiac == uniqueMiesiac)
+                            .map(wizyta => wizyta.pacjent.pacjentId)
 
 
-    let miesiaceArray = [];
-
-    uniqueMiesiaceStringi.forEach(uniqueMiesiac => {
-        const pacjentsId = [];
-        let uniqueIds = [];
-        const miesiaceObject = {
+        const months = {
             miesiac: uniqueMiesiac,
             pacjenci: []
         }
 
-        wizytyWithMiesiac.forEach(wizyta => {
-            if(wizyta.miesiac === uniqueMiesiac) {
-                pacjentsId.push(wizyta.pacjent.pacjentId)
-            }
-        })
+        const uniquePatientsIds = [...new Set(JSON.parse(JSON.stringify(patientsIds)))];
 
-        uniqueIds = [...new Set(JSON.parse(JSON.stringify(pacjentsId)))];
-
-        uniqueIds.forEach(id => {
-            const pacjenty = {
+        uniquePatientsIds.forEach(uniquePacjentId => {
+            const patient = {
                     pacjent: {},
                     wizyty: []
                 }
 
-            wizytyWithMiesiac.forEach(wizyta => {
-                if(wizyta.pacjent.pacjentId === id && wizyta.miesiac === uniqueMiesiac ) {
-                    pacjenty.wizyty.push(wizyta)
-                    pacjenty.pacjent = wizyta.pacjent
-                }
-            })
+            visitsWithMonth
+                .filter(wizyta => wizyta.pacjent.pacjentId == uniquePacjentId && wizyta.miesiac == uniqueMiesiac)
+                .forEach(wizyta => {
+                    patient.pacjent = wizyta.pacjent
+                    patient.wizyty.push(wizyta)
+                })
 
-            miesiaceObject.pacjenci.push(pacjenty)
+            months.pacjenci.push(patient)
         })
 
-        miesiaceArray.push(miesiaceObject)
+        monthsArray.push(months)
 
     })
 
-    if(miesiaceArray.length) {
+    if(monthsArray.length) {
         finalArray.push({
             firma: firma,
-            miesiace: miesiaceArray,
+            miesiace: monthsArray,
         })
     }
 });
     return finalArray;
 };
 
-export const mapToRozliczeniaSpecjalistyka = async (wizyty) => {
-        const wizytySortedByDate = wizyty.sort((a, b) => new Date(a.dataWizyty) - new Date(b.dataWizyty));
+export const mapToRozliczeniaSpecjalistyka = async (visits) => {
 
-        const pacjentsIds = [];
+        const visitsSortedByDate = visits.sort((a, b) => new Date(a.dataWizyty) - new Date(b.dataWizyty));
+        const patientsIds = visitsSortedByDate.map(wizyta => wizyta.pacjent.pacjentId);
+        const uniquePatientsIds = [...new Set(JSON.parse(JSON.stringify(patientsIds)))];
+        const monthsArray = [];
 
-        wizytySortedByDate.forEach(wizyta => {
-            pacjentsIds.push(wizyta.pacjent.pacjentId)
-        })
-        const uniquePacjents = [...new Set(JSON.parse(JSON.stringify(pacjentsIds)))];
+        uniquePatientsIds.forEach(uniquePacjentId => {
 
-        const miesiaceArray = [];
-        uniquePacjents.forEach(uniquePacjent => {
-
-            const pacjenci = {
+            const patient = {
                 pacjent: '',
                 wizyty: []
             }
 
-            wizytySortedByDate.forEach(wizyta => {
-                if(wizyta.pacjent.pacjentId === uniquePacjent) {
-                    pacjenci.pacjent = wizyta.pacjent
-                    pacjenci.wizyty.push(wizyta)
-                }
-            })
+            visitsSortedByDate
+                .filter(wizyta => wizyta.pacjent.pacjentId == uniquePacjentId)
+                .forEach(wizyta => {
+                    patient.pacjent = wizyta.pacjent
+                    patient.wizyty.push(wizyta)
 
-            miesiaceArray.push(pacjenci)
+                })
+
+            monthsArray.push(patient)
 
         })
 
-        return miesiaceArray;
+        return monthsArray;
     };
 
 
