@@ -3,16 +3,8 @@ import _ from 'lodash';
 
 describe('wizyty controllers', () => {
   test('has crud controllers', () => {
-    const crudMethods = [
-      'getOne',
-      'getMany',
-      'createOne',
-      'removeOne',
-      'updateOne'
-    ]
+    const crudMethods = ['getOne', 'getMany', 'createOne', 'removeOne', 'updateOne'];
 
-    crudMethods.forEach(name =>
-      expect(_.isFunction(wizytyControllers.crudControllers[name])).toBe(true)
-    )
-  })
-})
+    crudMethods.forEach(name => expect(_.isFunction(wizytyControllers.crudControllers[name])).toBe(true));
+  });
+});

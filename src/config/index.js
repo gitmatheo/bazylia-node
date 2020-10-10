@@ -1,9 +1,9 @@
 import dotenv from 'dotenv';
 import { devConfig } from './dev.js';
-import { testingConfig }  from './testing.js';
+import { testingConfig } from './testing.js';
 
-dotenv.config()
-const env = process.env.NODE_ENV || 'development'
+dotenv.config();
+const env = process.env.NODE_ENV || 'development';
 
 const baseConfig = {
   env,
@@ -12,23 +12,23 @@ const baseConfig = {
   port: 3000,
   secrets: {
     jwt: process.env.JWT_SECRET,
-    jwtExp: '100d'
-  }
-}
+    jwtExp: '100d',
+  },
+};
 
-let envConfig = {}
+let envConfig = {};
 
 switch (env) {
   case 'dev':
   case 'development':
-    envConfig = devConfig
-    break
+    envConfig = devConfig;
+    break;
   case 'test':
   case 'testing':
-    envConfig = testingConfig
-    break
+    envConfig = testingConfig;
+    break;
   default:
-    envConfig = devConfig
+    envConfig = devConfig;
 }
 
-export const config = {...baseConfig, ...envConfig};
+export const config = { ...baseConfig, ...envConfig };

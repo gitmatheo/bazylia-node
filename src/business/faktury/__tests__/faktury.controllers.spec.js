@@ -8,12 +8,11 @@ describe('faktury controllers', () => {
       'getMany',
       'createOne',
       'removeOne',
-      'updateOne'
-    ]
+      'updateOne',
+    ];
 
     crudMethods.forEach(name => {
-        expect(_.isFunction(controllers.crudControllers[name])).toBe(true)
-    }
-    )
-  })
-})
+      expect(_.isFunction(controllers.crudControllers[name])).toBe(true);
+    });
+  });
+});

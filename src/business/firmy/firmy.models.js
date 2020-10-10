@@ -8,8 +8,7 @@ const firmaSchema = new mongoose.Schema({
   nazwa: String,
   nip: String,
   ryczalt: Number,
-  ulica: String
+  ulica: String,
 });
 
 export const Firma = mongoose.model('Firma', firmaSchema, 'firmy');
-

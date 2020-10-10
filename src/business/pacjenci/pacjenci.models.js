@@ -7,13 +7,13 @@ const pacjentSchema = new mongoose.Schema({
   dataOrzeczeniaUpdated: Boolean,
   decyzja: {
     type: String,
-    enum : ['DECYZJA21', 'DECYZJA22', 'DECYZJA23', 'DECYZJA31', 'DECYZJA33', 'DECYZJA34', 'DECYZJA35'],
-    default: 'DECYZJA21'
+    enum: ['DECYZJA21', 'DECYZJA22', 'DECYZJA23', 'DECYZJA31', 'DECYZJA33', 'DECYZJA34', 'DECYZJA35'],
+    default: 'DECYZJA21',
   },
   decyzjaUpdated: Boolean,
   firma: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Firma'
+    ref: 'Firma',
   },
   imie: { type: String, required: true },
   nazwisko: { type: String, required: true },
@@ -27,8 +27,7 @@ const pacjentSchema = new mongoose.Schema({
   numerTelefonu: String,
 
   stanowisko: String,
-  ulica: String
+  ulica: String,
 });
 
 export const Pacjent = mongoose.model('Pacjent', pacjentSchema, 'pacjenci');
-

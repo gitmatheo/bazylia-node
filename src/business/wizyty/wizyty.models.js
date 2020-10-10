@@ -7,21 +7,21 @@ const wizytaSchema = new Schema({
   firmaId: Schema.Types.ObjectId,
   pacjent: {
     type: Schema.Types.ObjectId,
-    ref: 'Pacjent'
+    ref: 'Pacjent',
   },
   typWizyty: {
     type: String,
-    enum : ['MEDYCYNA_PRACY', 'SPECJALISTYKA'],
-    default: 'MEDYCYNA_PRACY'
+    enum: ['MEDYCYNA_PRACY', 'SPECJALISTYKA'],
+    default: 'MEDYCYNA_PRACY',
   },
   rodzajBadan: {
     type: String,
-    enum : ['WSTEPNE', 'OKRESOWE', 'KONTROLNE', 'CELOWE', 'KONCOWE', 'SANITARNO_EPIDEMIOLOGICZNE', null],
-    default: null
+    enum: ['WSTEPNE', 'OKRESOWE', 'KONTROLNE', 'CELOWE', 'KONCOWE', 'SANITARNO_EPIDEMIOLOGICZNE', null],
+    default: null,
   },
   dataWizyty: String,
   usluga: Object,
-  faktura: Schema.Types.Mixed
+  faktura: Schema.Types.Mixed,
 });
 
 export const Wizyta = mongoose.model('Wizyta', wizytaSchema, 'wizyty');

@@ -6,8 +6,7 @@ const uslugaSchema = mongoose.Schema({
   nazwa: String,
   typWizyty: String,
   pkwiu: String,
-  stawkaVat: Number
+  stawkaVat: Number,
 });
 
 export const Usluga = mongoose.model('Usluga', uslugaSchema, 'uslugi');
-  

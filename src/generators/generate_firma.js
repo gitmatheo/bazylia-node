@@ -11,7 +11,7 @@ function generateFirmy(numberOfCompaniesToGenerate) {
       nazwa: faker.company.companyName(),
       nip: toString(faker.random.number()),
       ryczalt: faker.random.number(),
-      ulica: faker.address.streetAddress()
+      ulica: faker.address.streetAddress(),
     });
   }
 

@@ -7,10 +7,10 @@ const uslugiSubSchema = new mongoose.Schema(
     nazwa: String,
     typWizyty: String,
     pkwiu: String,
-    stawkaVat: Number
+    stawkaVat: Number,
   },
-  {_id: false}
-)
+  { _id: false },
+);
 const FakturaSchema = new mongoose.Schema({
   fakturaId: mongoose.Schema.Types.ObjectId,
   dataFaktury: String,
@@ -23,12 +23,12 @@ const FakturaSchema = new mongoose.Schema({
     nazwa: String,
     nip: String,
     ryczalt: Number,
-    ulica: String
+    ulica: String,
   },
-  sposobPlatnosci:  {
+  sposobPlatnosci: {
     type: String,
-    enum : ['GOTOWKA', 'PRZELEW'],
-    default: 'GOTOWKA'
+    enum: ['GOTOWKA', 'PRZELEW'],
+    default: 'GOTOWKA',
   },
   sumaNetto: String,
   sumaBrutto: String,
@@ -38,5 +38,3 @@ const FakturaSchema = new mongoose.Schema({
 });
 
 export const Faktura = mongoose.model('Faktura', FakturaSchema, 'faktury');
-
-

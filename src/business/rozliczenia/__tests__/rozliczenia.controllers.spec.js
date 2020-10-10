@@ -3,13 +3,8 @@ import _ from 'lodash';
 
 describe('rozliczenia controllers', () => {
   test('has crud controllers', () => {
-    const crudMethods = [
-      'getRozliczeniaMedycynaPracy',
-      'getRozliczeniaSpecjalistyka',
-    ]
+    const crudMethods = ['getRozliczeniaMedycynaPracy', 'getRozliczeniaSpecjalistyka'];
 
-    crudMethods.forEach(name =>
-      expect(_.isFunction(controllers[name])).toBe(true)
-    )
-  })
-})
+    crudMethods.forEach(name => expect(_.isFunction(controllers[name])).toBe(true));
+  });
+});

@@ -1,13 +1,12 @@
-export const mapToUslugaDTO = (usluga) => {
+export const mapToUslugaDTO = usluga => {
+  const { _id, nazwa, cenaZwykla, typWizyty, pkwiu, stawkaVat } = usluga;
 
-    const { _id, nazwa, cenaZwykla, typWizyty, pkwiu, stawkaVat } = usluga;
-
-    return {
-        uslugaId: _id,
-        nazwa,
-        cenaZwykla,
-        typWizyty,
-        pkwiu,
-        stawkaVat
-    }
-}
+  return {
+    uslugaId: _id,
+    nazwa,
+    cenaZwykla,
+    typWizyty,
+    pkwiu,
+    stawkaVat,
+  };
+};

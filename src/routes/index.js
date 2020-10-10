@@ -9,11 +9,11 @@ import fakturyRouter from '../business/faktury/faktury.routes.js';
 
 const router = express.Router();
 
-router.use('/signup', signup)
-router.use('/login', login)
-router.use('/logout', logout)
+router.use('/signup', signup);
+router.use('/login', login);
+router.use('/logout', logout);
 
-router.use('/pacjenci',protect,  pacjenciRouter);
+router.use('/pacjenci', protect, pacjenciRouter);
 router.use('/firmy', protect, firmyRouter);
 router.use('/uslugi', protect, uslugiRouter);
 router.use('/wizyty', protect, wizytyRouter);
@@ -21,4 +21,3 @@ router.use('/rozliczenia', protect, rozliczeniaRouter);
 router.use('/faktury', protect, fakturyRouter);
 
 export default router;
-

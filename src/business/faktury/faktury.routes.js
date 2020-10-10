@@ -1,4 +1,3 @@
-
 import express from 'express';
 import fakturyControllers from './faktury.controllers.js';
 const router = express.Router();
@@ -9,14 +8,13 @@ const { crudControllers, getFaktury, postFaktura, getFaktura } = fakturyControll
 router
   .route('/')
   .get(getFaktury)
-  .post(postFaktura)
+  .post(postFaktura);
 
 // /faktury/:id
 router
   .route('/:id')
   .get(getFaktura)
   .put(crudControllers.updateOne)
-  .delete(crudControllers.removeOne)
-
+  .delete(crudControllers.removeOne);
 
 export default router;

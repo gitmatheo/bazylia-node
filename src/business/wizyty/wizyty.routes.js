@@ -2,10 +2,9 @@ import express from 'express';
 // import crudControllers  from './wizyty.controllers.js';
 // import { postWizyta, getIncomplete, getIncompleteCounter, getWizyty }  from './wizyty.controllers.js';
 
-import { wizytyControllers }  from './wizyty.controllers.js';
+import { wizytyControllers } from './wizyty.controllers.js';
 
 const { postWizyta, getIncomplete, getIncompleteCounter, getWizyty, crudControllers } = wizytyControllers;
-
 
 const router = express.Router();
 
@@ -13,23 +12,19 @@ const router = express.Router();
 router
   .route('/')
   .get(getWizyty)
-  .post(postWizyta)
+  .post(postWizyta);
 
 // /wizyty/incomplete
-router
-  .route('/incomplete/')
-  .get(getIncomplete)
+router.route('/incomplete/').get(getIncomplete);
 
 // /incomplete/counter
-router
-  .route('/incomplete/counter')
-  .get(getIncompleteCounter)
+router.route('/incomplete/counter').get(getIncompleteCounter);
 
 // /wizyty/:id
 router
   .route('/:id')
   .get(crudControllers.getOne)
   .put(crudControllers.updateOne)
-  .delete(crudControllers.removeOne)
+  .delete(crudControllers.removeOne);
 
 export default router;

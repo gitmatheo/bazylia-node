@@ -10,13 +10,11 @@ describe('pacjenci router', () => {
       { path: '/:id', method: 'delete' },
       { path: '/:id/decyzja', method: 'post' },
       { path: '/:id/data-orzeczenia', method: 'post' },
-    ]
+    ];
 
     routes.forEach(route => {
-      const match = router.stack.find(
-        s => s.route.path === route.path && s.route.methods[route.method]
-      )
-      expect(match).toBeTruthy()
-    })
-  })
-})
+      const match = router.stack.find(s => s.route.path === route.path && s.route.methods[route.method]);
+      expect(match).toBeTruthy();
+    });
+  });
+});
