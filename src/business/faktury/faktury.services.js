@@ -12,11 +12,7 @@ export const getNumerFaktury = async () => {
   try {
     let doc = await Faktura.findOne().sort({ field: 'asc', _id: -1 });
 
-    if (!doc) {
-      return `1/${date.getMonth()}/${date.getFullYear()}`;
-    } else {
-      return `${parseInt(doc.numerFaktury[0]) + 1}/${date.getMonth()}/${date.getFullYear()}`;
-    }
+    return `${parseInt(doc.numerFaktury[0]) + 1}/${date.getMonth()}/${date.getFullYear()}`;
   } catch {
     return `1/${date.getMonth()}/${date.getFullYear()}`;
   }
@@ -102,11 +98,10 @@ export const getPlatnik = async faktura => {
   }
 
   if (faktura.uslugi[0].typWizyty == 'SPECJALISTYKA') {
-    let wizyta = await Wizyta.find({ faktura: ObjectId(faktura._id) })
+    let wizyty = await Wizyta.find({ faktura: ObjectId(faktura._id) })
       .lean()
       .exec();
-
-    const pacjentId = wizyta[0].pacjent;
+    const pacjentId = wizyty[0].pacjent;
 
     let pacjent = await Pacjent.findById(ObjectId(pacjentId));
 

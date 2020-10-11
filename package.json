@@ -6,12 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "cross-env NODE_ENV=testing jest --forceExit --detectOpenHandles --verbose --runInBand",
-    "test-with-memory-database": "jest --runInBand ./src/utils/__tests__/test.spec.js",
-    "build": "babel src --out-dir dist",
-    "dev": "nodemon --exec yarn restart",
-    "restart": "rimraf dist && yarn build && yarn start",
-    "serve": "npx webpack --config webpack.config.js",
-    "start": "nodemon src/index.js --experimental-modules"
+    "build": "webpack-dev-server",
+    "build:prod": "webpack",
+    "start": "nodemon src/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -30,7 +27,9 @@
     "mongoose": "^5.9.7",
     "swagger-ui-express": "^4.1.4",
     "typescript": "^3.8.3",
-    "uuid": "^8.1.0"
+    "uuid": "^8.1.0",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-node-externals": "^2.5.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -60,7 +59,7 @@
     "rimraf": "^2.6.2",
     "supertest": "^3.3.0",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^4.0.0"
   },
   "jest": {
     "verbose": true,

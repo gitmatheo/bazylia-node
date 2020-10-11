@@ -4,7 +4,7 @@
     "es6": true,
     "node": true
   },
-  "extends": ["prettier", "airbnb-base"],
+  "extends": ["prettier", "airbnb-base", "plugin:import/react"],
   "plugins": ["prettier"],
   "globals": {
     "Atomics": "readonly",
@@ -20,5 +20,12 @@
     "import/prefer-default-export": "off",
     "arrow-parens": 0,
     "import/extensions": ["always"]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"]
+      }
+    }
   }
 }

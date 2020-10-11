@@ -29,16 +29,17 @@ export const postFaktura = () => async (req, res) => {
     faktura = await Faktura.create(faktura);
 
     // update wizyta with fakturaID
-    wizyty.forEach(async wizyta => {
-      await Wizyta.findByIdAndUpdate({ _id: ObjectId(wizyta._id) }, { faktura: ObjectId(faktura._id) })
+    let wizytyUpdated = await wizyty.map(async wizyta => {
+      return await Wizyta.findByIdAndUpdate({ _id: ObjectId(wizyta._id) }, { faktura: ObjectId(faktura._id) })
         .lean()
         .exec();
     });
 
-    faktura = await mapToSingleFakturaDTO(faktura);
-
-    res.location(`/faktury/${faktura.fakturaId}`);
-    res.status(201).json(faktura);
+    Promise.all(wizytyUpdated).then(async response => {
+      faktura = await mapToSingleFakturaDTO(faktura);
+      res.location(`/faktury/${faktura.fakturaId}`);
+      res.status(201).json(faktura);
+    });
   } catch (e) {
     console.error(e);
     res.status(400).end();
