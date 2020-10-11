@@ -59,7 +59,7 @@ export const getFirma = async (wizyty, res, firma) => {
 };
 
 export const getSumaNetto = (wizyty, firma) => {
-  if (wizyty[0].typWizyty == 'MEDYCYNA_PRACY' && firma.ryczalt != 0 && firma.ryczalt != null) {
+  if (wizyty[0].typWizyty == 'MEDYCYNA_PRACY' && firma.ryczalt) {
     return parseFloat(firma.ryczalt).toFixed(2);
   } else {
     let sumaNetto = 0;
@@ -72,7 +72,7 @@ export const getSumaNetto = (wizyty, firma) => {
 
 export const getSumaBrutto = (wizyty, firma) => {
   const vat = 0.23;
-  if (wizyty[0].typWizyty == 'MEDYCYNA_PRACY' && firma.ryczalt != 0 && firma.ryczalt != null) {
+  if (wizyty[0].typWizyty == 'MEDYCYNA_PRACY' && firma.ryczalt) {
     return firma.ryczalt + firma.ryczalt * vat;
   } else {
     let sum = 0;
@@ -83,21 +83,10 @@ export const getSumaBrutto = (wizyty, firma) => {
   }
 };
 
-export const getUslugi = wizyty => {
-  const uslugi = [];
-  wizyty.forEach(wizyta => {
-    uslugi.push(wizyta.usluga);
-  });
-  return uslugi;
-};
+export const getUslugi = wizyty => wizyty.map(wizyta => wizyta.usluga);
 
-export const getDataUslugi = req => {
-  if (req.body.tylkoMiesiac) {
-    return buildMonthField(req.body.dataSprzedazy);
-  } else {
-    return req.body.dataSprzedazy;
-  }
-};
+export const getDataUslugi = req =>
+  req.body.tylkoMiesiac ? buildMonthField(req.body.dataSprzedazy) : req.body.dataSprzedazy;
 
 export const getPlatnik = async faktura => {
   if (faktura.uslugi[0].typWizyty == 'MEDYCYNA_PRACY') {
@@ -134,7 +123,7 @@ export const getPlatnik = async faktura => {
   }
 };
 export const getUslugiDlaFaktury = async faktura => {
-  if (faktura.firma.ryczalt && faktura.firma.ryczalt != 0) {
+  if (faktura.firma.ryczalt) {
     return [
       {
         cenaNetto: faktura.firma.ryczalt,
@@ -151,14 +140,7 @@ export const getUslugiDlaFaktury = async faktura => {
     const uslugiId = uslugi.map(usluga => usluga.uslugaId);
     const uniqueUslugiID = [...new Set(JSON.parse(JSON.stringify(uslugiId)))];
 
-    const uniqueUslugi = [];
-    uniqueUslugiID.forEach(id => {
-      uniqueUslugi.push(
-        uslugi.find(usluga => {
-          return usluga.uslugaId == id;
-        }),
-      );
-    });
+    const uniqueUslugi = uniqueUslugiID.map(id => uslugi.find(usluga => usluga.uslugaId == id));
     const mappedUslugi = uniqueUslugi.map(usluga => {
       let ilosc = uslugi.filter(element => JSON.stringify(element.uslugaId) === JSON.stringify(usluga.uslugaId));
       return {

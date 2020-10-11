@@ -1,4 +1,3 @@
-// import mongoose from 'mongoose'
 import mongoose from 'mongoose';
 
 const pacjentSchema = new mongoose.Schema({
@@ -21,11 +20,9 @@ const pacjentSchema = new mongoose.Schema({
   kodPocztowy: String,
   miasto: String,
   nazwaPracodawcy: String,
-
   nip: String,
   numerKarty: String,
   numerTelefonu: String,
-
   stanowisko: String,
   ulica: String,
 });

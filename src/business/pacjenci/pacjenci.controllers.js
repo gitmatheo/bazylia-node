@@ -62,7 +62,7 @@ export const updateDataOrzeczenia = () => async (req, res) => {
 };
 
 export default {
-  getPacjenci: getPacjenci('pacjentId'),
+  getPacjenci: getPacjenci(),
   updateDecyzja: updateDecyzja(),
   updateDataOrzeczenia: updateDataOrzeczenia(),
   crudControllers: crudControllers(Pacjent, 'pacjentId'),

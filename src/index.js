@@ -34,16 +34,3 @@ app.use(routes);
 app.listen(process.env.PORT, () => {
   console.log(`++++++++ Server started on port ${process.env.PORT} ++++++++++`);
 });
-
-//TODO - refactor
-//1. relative paths ../ are difficult to understand.
-//   refactor them to absolute paths and remove .js part.
-//   import { crudControllers } from '../../utils/crud.js';
-//   to
-//   import { crudControllers } from '@/utils/crud';
-
-//2. remove all replaceMongoIdWithCustomId() from repo;
-//3. add toObjectDTOs mappers
-//4. add toObjectEntities mappers
-//5. extract services from controllers that require it and separate responsibilites
-//6. .lean() .exec() ?

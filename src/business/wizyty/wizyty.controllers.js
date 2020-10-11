@@ -36,14 +36,31 @@ export const postWizyta = () => async (req, res) => {
 
     if (req.body.typWizyty === 'MEDYCYNA_PRACY') {
       let wizyta = await Wizyta.create(mapToWizytaMedycynaPracyEntity(req));
+      wizyta = await wizyta
+        .populate({
+          path: 'pacjent',
+          model: Pacjent,
+          populate: {
+            path: 'firma',
+            model: Firma,
+          },
+        })
+        .execPopulate();
 
       await Pacjent.findByIdAndUpdate(
         { _id: pacjentId },
-        { firma: firma ? ObjectId(firma.firmaId) : null, dataOrzeczeniaUpdated: false, decyzjaUpdated: false },
+        {
+          firma: firma ? ObjectId(firma.firmaId) : null,
+          dataOrzeczeniaUpdated: false,
+          decyzjaUpdated: false,
+        },
         (err, result) => {
           if (err) {
             res.send(err);
           } else {
+            console.log(wizyta);
+            console.log('UDALO SIE');
+            console.log(mapToWizytaDTO(wizyta));
             res.status(201).json(mapToWizytaDTO(wizyta));
           }
         },

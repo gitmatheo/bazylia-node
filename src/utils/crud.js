@@ -27,11 +27,7 @@ export const getMany = (model, id) => async (req, res) => {
       .lean()
       .exec();
 
-    let docsWithCustomId = [];
-
-    docs.forEach(doc => {
-      docsWithCustomId.push(replaceMongoIdWithCustomId(doc, id));
-    });
+    let docsWithCustomId = docs.map(doc => replaceMongoIdWithCustomId(doc, id));
 
     res.status(200).json([...docsWithCustomId]);
   } catch (e) {
