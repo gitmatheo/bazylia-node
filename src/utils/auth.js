@@ -58,18 +58,16 @@ export const login = async (req, res) => {
 
     const token = newToken(user);
 
-    return (
-      res
-        .status(201)
-        // .cookie('access_token', token, {
-        //   expires: new Date(Date.now() + 3600000) // cookie will be removed after 1 hour
-        // })
-        .send({
-          token: token,
-          username: user.login,
-          roles: user.roles,
-        })
-    );
+    return res
+      .status(201)
+      .cookie('access_token', token, {
+        expires: new Date(Date.now() + 3600000), // cookie will be removed after 1 hour
+      })
+      .send({
+        token: token,
+        username: user.login,
+        roles: user.roles,
+      });
   } catch (e) {
     console.error(e);
     res.status(500).end();
